@@ -1,4 +1,3 @@
-import React from 'react'
 import bg from '../../public/images/1.jpg'
 import { PlayIcon } from '../Icons'
 import PrimaryBtn from '../utils/PrimaryBtn'
@@ -14,7 +13,6 @@ const Hero = () => {
           <h1 className='font-bold text-3xl md:text-4xl lg:text-6xl mb-8'>Donate Blood And <br /> Inspire Others. </h1>
           <PrimaryBtn className='mt-4' >Explore Now</PrimaryBtn>
         </div>
-
       </div>
     </section>
   )
