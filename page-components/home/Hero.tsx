@@ -1,4 +1,4 @@
-import bg from '../../public/images/1.jpg'
+import bg from '../../public/images/1.webp'
 import { PlayIcon } from '../Icons'
 import PrimaryBtn from '../utils/PrimaryBtn'
 const Hero = () => {
