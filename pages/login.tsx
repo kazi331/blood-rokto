@@ -10,7 +10,7 @@ const Login = () => {
             <div className="flex items-center justify-between">
               <span className='select-none'>Available</span>
               <span>
-                <input type="checkbox" name="available" id="available" onClick={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.checked)} />
+                <input type="checkbox" name="available" id="available" />
                 <label className={styles.inputLabel} htmlFor="available"></label>
               </span>
             </div>
