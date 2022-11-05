@@ -27,11 +27,11 @@ const Register = () => {
         </div>
       </div>
       <div className="container mx-auto flex items-center justify-center py-20" >
-        <div className="py-4 min-w-max border p-8">
+        <div className="py-4 min-w-min border p-8">
           <h2 className='text-3xl font-bold text-center py-4'>Blood Ai Organization</h2>
           <form className={styles.RegisterForm} action="">
 
-            <div className="flex flex-col gap-4">
+            <div className="fields flex flex-col gap-6 sm:gap-4">
 
               {/* Name field  */}
               <div className={styles.field}>
@@ -116,8 +116,6 @@ const Register = () => {
                   </div>
                 </div>
               </div>
-
-
 
               {/* Available button */}
               <div className="flex items-center justify-between">

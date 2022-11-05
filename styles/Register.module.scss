@@ -1,3 +1,18 @@
+$sm: "only screen and (min-width: 640px)";
+// => @media (min-width: 640px) { ... }
+
+$md: "only screen and (min-width: 768px)";
+// => @media (min-width: 768px) { ... }
+
+$lg: "only screen and (min-width:  1024px)";
+// => @media (min-width: 1024px) { ... }
+
+$xl: "only screen and (min-width:  1280px)";
+// => @media (min-width: 1280px) { ... }
+
+$xl2: "only screen and (min-width:  1536px)";
+// => @media (min-width: 1536px) { ... }
+
 .RegisterForm {
   width: 100%;
   padding: 10px 0;
@@ -46,9 +61,19 @@
 
   // register form
 
+  .fields{
+    background-color: red;
+  }
   .field {
+
+
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 2px;
+
+    @media #{$sm} {
+     flex-direction: row;
+    }
 
     .fieldLabel {
       flex: 1;
@@ -75,7 +100,8 @@
           outline: none;
           background: transparent;
         }
-        &::placeholder{
+
+        &::placeholder {
           font-size: 80%;
         }
       }
