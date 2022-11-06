@@ -1,9 +1,9 @@
-import React from 'react'
-import styles from '../styles/Register.module.scss'
-import registerBg from '../public/images/blood-donation-camp-1.webp'
 import Link from 'next/link'
-import { bloodGroups, months, countries } from '../data'
-
+import { useState } from 'react'
+import { set, useForm } from "react-hook-form"
+import { bloodGroups, countries, months } from '../data'
+import registerBg from '../public/images/blood-donation-camp-1.webp'
+import styles from '../styles/Register.module.scss'
 
 const start: number = 1950;
 const end: number = 2023;
@@ -11,10 +11,32 @@ const length = end - start + 1;
 const years = Array(length).fill(start).map((x, y) => x + y);
 const days = Array.from({ length: 31 }, (x, i) => i + 1);
 
-
-
+type Inputs = {
+  fname: string,
+  lname: string
+}
 
 const Register = () => {
+  const [userInfo, setUserInfo] = useState<Inputs | {}>({})
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+  const onSubmit = (data: Inputs) => setUserInfo(data)
+  console.log(userInfo)
+
+
+  // const handleRegister = (e: React.SyntheticEvent<HTMLInputElement>) => {
+  // /*   e.preventDefault();
+  //   const fname = e.target.fname.value;
+  //   const lname = e.target.lname.value;
+  //   const name = { fname, lname }
+
+  //   const dob = {
+  //     day: e.target.dobM.value,
+  //     month: e.target.dobD.value,
+  //     year: e.target.dobY.value
+  //   }
+
+  //   console.log(dob, name) */
+  // }
 
   return (
     <div>
@@ -29,16 +51,17 @@ const Register = () => {
       <div className="container mx-auto flex items-center justify-center py-20" >
         <div className="py-4 min-w-min border p-8">
           <h2 className='text-3xl font-bold text-center py-4'>Blood Ai Organization</h2>
-          <form className={styles.RegisterForm} action="">
+          <form className={styles.RegisterForm} onSubmit={handleSubmit(onSubmit)}>
 
+            {/* Form fields  */}
             <div className="fields flex flex-col gap-6 sm:gap-4">
 
               {/* Name field  */}
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="fname">Full Name</label>
                 <div className={styles.fieldInput}>
-                  <input type="text" id="fname" placeholder='First name' required />
-                  <input type="text" id="lname" placeholder='Last name' />
+                  <input {...register("fname", { required: true })} type="text" id="fname" placeholder='First name' />
+                  <input {...register("lname")} type="text" id="lname" placeholder='Last name' />
                 </div>
               </div>
 
