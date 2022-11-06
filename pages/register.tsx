@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { set, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { bloodGroups, countries, months } from '../data'
 import registerBg from '../public/images/blood-donation-camp-1.webp'
 import styles from '../styles/Register.module.scss'
@@ -11,9 +11,13 @@ const length = end - start + 1;
 const years = Array(length).fill(start).map((x, y) => x + y);
 const days = Array.from({ length: 31 }, (x, i) => i + 1);
 
+
 type Inputs = {
-  fname: string,
-  lname: string
+  name: { fname: string, lname: string, }
+  dob: { day: any, month: any, year: any, }
+  blood: string, donate: { day: any, month: any, year: any, }
+  available: boolean
+  address: { city: string, street: string, state: string, country: string }
 }
 
 const Register = () => {
@@ -54,31 +58,37 @@ const Register = () => {
           <form className={styles.RegisterForm} onSubmit={handleSubmit(onSubmit)}>
 
             {/* Form fields  */}
-            <div className="fields flex flex-col gap-6 sm:gap-4">
+            <div className="flex flex-col gap-6">
 
               {/* Name field  */}
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="fname">Full Name</label>
-                <div className={styles.fieldInput}>
-                  <input {...register("fname", { required: true })} type="text" id="fname" placeholder='First name' />
-                  <input {...register("lname")} type="text" id="lname" placeholder='Last name' />
+                <div className={styles.fieldInput} >
+                  <div>
+                    <input {...register("name.fname", { required: true })} type="text" id="fname" placeholder='First name' />
+                    {errors.name && <span className={styles.error}>This field is required</span>}
+                  </div>
+                  <div>
+                    <input {...register("name.lname", { required: true })} type="text" id="lname" placeholder='Last name' />
+                    {errors.name && <span className={styles.error}>This field is required</span>}
+                  </div>
                 </div>
               </div>
+
 
               {/* DOB field  */}
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="dobM">Date of birth</label>
                 <div className={styles.fieldInput}>
-                  <select className={styles.day} name="dobD" id="dobD" placeholder='day' required>
-                    <option value="">Day</option>
+                  <select {...register("dob.day")} className={styles.day} name="dobD" id="dobD" placeholder='day' required>
+                    {/* <option value="defaultValue">Day</option> */}
                     {days.map((day) => <option key={day} value={day}>{day}</option>)}
                   </select>
-                  <select className={styles.month} name="dobM" id="dobM" placeholder='day' required>
-                    <option value="">Month</option>
-                    {months.map((month) => <option key={month} value={month}>{month}</option>)}
+                  <select {...register("dob.month")} className={styles.month} name="dobM" id="dobM" placeholder='month' required>
+                    {/* <option value="">Month</option> */}
+                    {months.map((month) => <option key={month.value} value={month.value}>{month.name}</option>)}
                   </select>
-                  <select className={styles.year} name="dobY" id="dobY" placeholder='day' required>
-                    <option value="">Year</option>
+                  <select {...register("dob.year")} className={styles.year} name="year" id="year" placeholder='year' required>
                     {years.map((year) => <option key={year} value={year}>{year}</option>)}
                   </select>
                 </div>
@@ -87,11 +97,11 @@ const Register = () => {
 
               {/* Blood Group field  */}
               <div className={styles.field}>
-                <label className={styles.fieldLabel} htmlFor="bGroup">Blood Group</label>
+                <label className={styles.fieldLabel} htmlFor="blood">Blood Group</label>
                 <div className={styles.fieldInput}>
-                  <select name="bGroup" id="bGroup" placeholder='day' required>
+                  <select {...register("blood")} name="blood" id="blood" placeholder='day' required>
                     <option value="">Select Blood Group</option>
-                    {bloodGroups.map((group) => <option key={group.value} value={group.value}>{group.name}</option>)}
+                    {bloodGroups.map((group) => <option key={group.value} value={group.value}> {group.name}</option>)}
                   </select>
                 </div>
               </div>
@@ -100,18 +110,34 @@ const Register = () => {
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="donateM">Last Donate <span className='text-xs'>(Optional)</span></label>
                 <div className={styles.fieldInput}>
-                  <select className={styles.day} name="donateD" id="donateD" >
-                    <option value="">Day</option>
+                  <select {...register("donate.day")} className={styles.day} name="day" id="day" >
+                    {/* <option value="">Day</option> */}
                     {days.map((day) => <option key={day} value={day}>{day}</option>)}
                   </select>
-                  <select className={styles.month} name="donateM" id="donateM" >
-                    <option value="">Month</option>
-                    {months.map((month) => <option key={month} value={month}>{month}</option>)}
+                  <select {...register("donate.month")} className={styles.month} name="month" id="month" >
+                    {/* <option value="">Month</option> */}
+                    {months.map((month) => <option key={month.value} value={month.value}> {month.name} </option>)}
                   </select>
-                  <select className={styles.year} name="donateY" id="donateY" >
-                    <option value="">Year</option>
+                  <select {...register("donate.year")} className={styles.year} name="year" id="year" >
+                    {/* <option value="">Year</option> */}
                     {years.map((year) => <option key={year} value={year}>{year}</option>)}
                   </select>
+                </div>
+              </div>
+
+              {/* Address field  */}
+              <div className={styles.field}>
+                <label className={styles.fieldLabel} htmlFor="street">Address</label>
+                <div className={styles.fieldInput}>
+                  <div className="flex flex-col w-full gap-y-2">
+                    <input {...register('address.street')} type="text" id="street" placeholder='Street' />
+                    <input {...register('address.city')} type="text" id="city" placeholder='City' />
+                    <input {...register('address.state')} type="text" id="state" placeholder='State/Province' />
+                    <select {...register('address.country')} name="country" id="country" required>
+                      {/* <option value="">Select Country</option> */}
+                      {countries.map((country) => <option key={country.code} value={country.code}>{country.name}</option>)}
+                    </select>
+                  </div>
                 </div>
               </div>
 
@@ -124,21 +150,7 @@ const Register = () => {
                 </div>
               </div>
 
-              {/* Address field  */}
-              <div className={styles.field}>
-                <label className={styles.fieldLabel} htmlFor="street">Address</label>
-                <div className={styles.fieldInput}>
-                  <div className="flex flex-col w-full gap-y-2">
-                    <input type="text" id="street" placeholder='Street' />
-                    <input type="text" id="city" placeholder='City' />
-                    <input type="text" id="state" placeholder='State/Province' />
-                    <select name="country" id="country" required>
-                      <option value="">Select Country</option>
-                      {countries.map((country) => <option key={country.code} value={country.code}>{country.name}</option>)}
-                    </select>
-                  </div>
-                </div>
-              </div>
+
 
               {/* Available button */}
               <div className="flex items-center justify-between">
@@ -147,7 +159,7 @@ const Register = () => {
                   <span className='text-xs'> ( Are you available now to donate blood? )</span>
                 </span>
                 <span>
-                  <input type="checkbox" name="available" id="available" />
+                  <input {...register("available")} type="checkbox" name="available" id="available" />
                   <label className={styles.switchLable} htmlFor="available"></label>
                 </span>
               </div>

@@ -61,9 +61,7 @@ $xl2: "only screen and (min-width:  1536px)";
 
   // register form
 
-  .fields{
-    background-color: red;
-  }
+
   .field {
 
 
@@ -72,7 +70,7 @@ $xl2: "only screen and (min-width:  1536px)";
     gap: 2px;
 
     @media #{$sm} {
-     flex-direction: row;
+      flex-direction: row;
     }
 
     .fieldLabel {
@@ -85,6 +83,7 @@ $xl2: "only screen and (min-width:  1536px)";
       display: flex;
       align-items: center;
       gap: 10px;
+
 
       select,
       input {
@@ -116,6 +115,19 @@ $xl2: "only screen and (min-width:  1536px)";
 
       .year {
         flex: 3
+      }
+
+      // error
+      div {
+        position: relative;
+      }
+
+      .error {
+        font-size: 0.8rem;
+        color: rgb(230, 43, 43);
+        position: absolute;
+        left: 0;
+        top: 100%;
       }
 
     }
