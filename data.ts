@@ -1,3 +1,9 @@
+const start: number = 1950;
+const end: number = 2023;
+const length = end - start + 1;
+export const years = Array(length).fill(start).map((x, y) => x + y);
+export const days = Array.from({ length: 31 }, (x, i) => i + 1);
+
 export const bloodGroups = [
   { value: 'O+', name: 'O Positive (O+)' },
   { value: 'O-', name: 'O Negative (O-)' },
