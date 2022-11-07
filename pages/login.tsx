@@ -13,12 +13,11 @@ type SubmitType = {
   target: { value: any; };
 }
 
-const Register = () => {
+const Login = () => {
   const [showPass, setShowPass] = useState<boolean>(false);
 
   const formik = useFormik<FormikValues>({
     initialValues: {
-      name: '',
       email: '',
       password: '',
     },
@@ -33,9 +32,9 @@ const Register = () => {
   return (
     <div>
       <Head>
-        <title>Rokto - Register</title>
+        <title>Rokto - Login</title>
       </Head>
-      <PageHeader title="Register As A Blood Donar" page="Register" />
+      <PageHeader title="Login To Your Account" page="Login" />
       <div className="container mx-auto flex items-center justify-center py-20" >
         <div className="py-4 min-w-min border p-8">
           <h2 className='text-3xl font-bold text-center py-4'>Blood Ai Organization</h2>
@@ -43,14 +42,6 @@ const Register = () => {
 
             {/* Form fields  */}
             < div className="flex flex-col gap-6" >
-
-              {/* Name field  */}
-              <div className={styles.field} >
-                <label className={styles.fieldLabel} htmlFor="name">Full Name</label>
-                <div className={styles.fieldInput} >
-                  <input onChange={handleChange} value={values.name} type="text" id="name" placeholder='Full Name' required />
-                </div>
-              </div>
 
               {/* Email field  */}
               <div className={styles.field} >
@@ -71,13 +62,13 @@ const Register = () => {
               </div>
 
             </div>
-            <button className='w-full bg-primary py-2 text-white font-bold mt-8' type="submit">Register</button>
+            <button className='w-full bg-primary py-2 text-white font-bold mt-8' type="submit">Login</button>
           </form>
-          <p className='text-xs text-right'>Have an account? <Link className='text-primary' href="/login">Login</Link></p>
+          <p className='text-xs text-right'>New to Rokto?<Link className='text-primary' href="/register"> Register</Link></p>
         </div >
       </div >
     </div >
   )
 }
 
-export default Register;
+export default Login;
