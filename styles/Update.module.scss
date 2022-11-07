@@ -13,12 +13,58 @@ $xl: "only screen and (min-width:  1280px)";
 $xl2: "only screen and (min-width:  1536px)";
 // => @media (min-width: 1536px) { ... }
 
-.registerForm {
+.updateForm{
   width: 100%;
   padding: 10px 0;
 
+
+  // Available check box design
+  input[type=checkbox] {
+    visibility: hidden;
+    display: none;
+    width: 0;
+    height: 0;
+
+    &:checked+label:after {
+      left: 100%;
+      transform: translateX(-100%);
+    }
+  }
+
+  input[type=checkbox]:checked+label {
+    background: #EA062B;
+  }
+
+  .switchLable {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 42px;
+    height: 20px;
+    background: grey;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 20px;
+      height: 100%;
+      background: #fff;
+      box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.3);
+      border-radius: 90px;
+      transition: cubic-bezier(.68, -0.55, .27, 1.55) 0.2s;
+    }
+  }
+
   // register form
+
+
   .field {
+
+    display: flex;
     flex-direction: column;
     gap: 2rem;
 
@@ -28,8 +74,6 @@ $xl2: "only screen and (min-width:  1536px)";
 
     .fieldLabel {
       flex: 2;
-      display: inline-block;
-      margin-bottom: 6px;
     }
 
     .fieldInput {
@@ -38,8 +82,9 @@ $xl2: "only screen and (min-width:  1536px)";
       display: flex;
       align-items: center;
       gap: 10px;
-      position: relative;
 
+
+      select,
       input {
         width: 100%;
         padding: 4px 10px;
@@ -57,18 +102,34 @@ $xl2: "only screen and (min-width:  1536px)";
         &::placeholder {
           font-size: 80%;
         }
-
-
+      }
+      select{
+        padding: 6px 10px;
       }
 
-      .eye {
+      .month {
+        flex: 3;
+      }
+
+      .day {
+        flex: 2;
+      }
+
+      .year {
+        flex: 3
+      }
+
+      // error
+      div {
+        position: relative;
+      }
+
+      .error {
+        font-size: 0.8rem;
+        color: rgb(230, 43, 43);
         position: absolute;
-        right: 0;
-        // top: 6px;
-        padding: 10px;
-        margin-right: 4px;
-        font-size: 1.3rem;
-        cursor: pointer;
+        left: 0;
+        top: 100%;
       }
 
     }
