@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -21,8 +22,11 @@ const Login = () => {
       email: '',
       password: '',
     },
-    onSubmit: (values: any) => {
+    onSubmit: async (values: any) => {
       console.log(values);
+      await axios.post('https://apiblood.herokuapp.com/api/accounts', values)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
   });
 

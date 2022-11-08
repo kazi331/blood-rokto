@@ -69,6 +69,11 @@ $xl2: "only screen and (min-width:  1536px)";
         margin-right: 4px;
         font-size: 1.3rem;
         cursor: pointer;
+        opacity: 0.2;
+
+        &:hover {
+          opacity: 0.4;
+        }
       }
 
     }

@@ -1,8 +1,10 @@
+import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
-import { EyeClose, EyeOpen } from '../page-components/Icons';
+import toast, { Toaster } from 'react-hot-toast';
+import { EyeClose, EyeOpen, Spinner, Spinner2 } from '../page-components/Icons';
 import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Register.module.scss';
 
@@ -15,15 +17,26 @@ type SubmitType = {
 
 const Register = () => {
   const [showPass, setShowPass] = useState<boolean>(false);
-
+  const [loading, setLoading] = useState(false)
   const formik = useFormik<FormikValues>({
     initialValues: {
-      name: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
     },
-    onSubmit: (values: any) => {
-      console.log(values);
+    onSubmit: async (values: any) => {
+      setLoading(true)
+      await axios.post('https://apiblood.herokuapp.com/api/accounts', values)
+        .then(res => {
+          console.log(res);
+          setLoading(false)
+          toast.success('Account Created Successfully!', { position: 'top-right' })
+        })
+        .catch(err => {
+          console.log(err)
+          setLoading(false)
+        })
     }
   });
 
@@ -35,6 +48,7 @@ const Register = () => {
       <Head>
         <title>Rokto - Register</title>
       </Head>
+      <Toaster />
       <PageHeader title="Register As A Blood Donar" page="Register" />
       <div className="container mx-auto flex items-center justify-center py-20" >
         <div className="py-4 min-w-min border p-8">
@@ -48,7 +62,13 @@ const Register = () => {
               <div className={styles.field} >
                 <label className={styles.fieldLabel} htmlFor="name">Full Name</label>
                 <div className={styles.fieldInput} >
-                  <input onChange={handleChange} value={values.name} type="text" id="name" placeholder='Full Name' required />
+                  <div className={styles.name}>
+                    <input onChange={handleChange} value={values.first_name} type="text" id="first_name" placeholder='First Name' required />
+                  </div>
+                  <div className={styles.name}>
+                    <input onChange={handleChange} value={values.last_name} type="text" id="last_name" placeholder='Last Name' required />
+                  </div>
+
                 </div>
               </div>
 
@@ -65,13 +85,13 @@ const Register = () => {
               <div className={styles.field} >
                 <label className={styles.fieldLabel} htmlFor="password">Password</label>
                 <div className={styles.fieldInput} >
-                  <input onChange={handleChange} value={values.password} type={showPass ? 'text' : 'password'} id="password" placeholder='password' required />
+                  <input onChange={handleChange} value={values.password} type={showPass ? 'text' : 'password'} minLength={8} id="password" placeholder='password' required />
                   <span className={styles.eye} onClick={() => setShowPass(!showPass)}> {showPass ? <EyeOpen /> : <EyeClose />} </span>
                 </div>
               </div>
 
             </div>
-            <button className='w-full bg-primary py-2 text-white font-bold mt-8' type="submit">Register</button>
+            <button disabled={loading} className='w-full flex items-center justify-center bg-primary py-2 text-white font-bold mt-8' type="submit"> {loading && <Spinner />} <Spinner2 /> Register</button>
           </form>
           <p className='text-xs text-right'>Have an account? <Link className='text-primary' href="/login">Login</Link></p>
         </div >
