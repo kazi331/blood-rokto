@@ -45,7 +45,7 @@ const Doners = () => {
   }
 
   return (
-    <section className="text-gray-400 bg-gray-900 body-font">
+    <section className="text-gray-300 bg-dark1 body-font">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-white">Doner List</h1>
@@ -71,7 +71,7 @@ const Doners = () => {
 
               {doners.length && doners?.map(doner => {
                 const { id, first_name, last_name, email, phone, date_joined, city, is_available, avatar } = doner;
-                return <tr key={id} className="whitespace-nowrap">
+                return <tr key={id} className="whitespace-nowrap hover:bg-dark-hover pl-2">
                   <td className="px-2 py-3">{id}</td>
                   <td className="px-2 py-3"> <Image className='rounded-full' src={avatarImg.src} width="40" height="40" alt="user-avatar" /> </td>
                   <td className="px-2 py-3">{first_name} {last_name}</td>

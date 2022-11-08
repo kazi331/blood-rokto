@@ -34,8 +34,11 @@ const Register = () => {
           toast.success('Account Created Successfully!', { position: 'top-right' })
         })
         .catch(err => {
-          console.log(err)
           setLoading(false)
+          console.log(err.response.data.errors.email[0])
+          if (err.response.data.status == 'failed') {
+            toast.error('User Already Exists!', { position: 'top-right' })
+          }
         })
     }
   });

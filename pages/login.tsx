@@ -2,7 +2,9 @@ import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { EyeClose, EyeOpen } from '../page-components/Icons';
 import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Register.module.scss';
@@ -17,6 +19,8 @@ type SubmitType = {
 const Login = () => {
   const [showPass, setShowPass] = useState<boolean>(false);
 
+  const router = useRouter();
+
   const formik = useFormik<FormikValues>({
     initialValues: {
       email: '',
@@ -24,8 +28,17 @@ const Login = () => {
     },
     onSubmit: async (values: any) => {
       console.log(values);
-      await axios.post('https://apiblood.herokuapp.com/api/accounts', values)
-        .then(res => console.log(res))
+      await axios.post('https://apiblood.herokuapp.com/api/account/login', values)
+        .then(res => {
+          console.log(res)
+          if (res.data.status === 'success') {
+            console.log(res.data.status)
+            toast.success('Login Success!', { position: 'top-right' })
+            setTimeout(() => {
+              router.push('/dashboard')
+            }, 1000);
+          }
+        })
         .catch(err => console.log(err))
     }
   });
@@ -35,6 +48,7 @@ const Login = () => {
 
   return (
     <div>
+      <Toaster />
       <Head>
         <title>Rokto - Login</title>
       </Head>
