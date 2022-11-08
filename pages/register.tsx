@@ -27,7 +27,7 @@ const Register = () => {
     },
     onSubmit: async (values: any) => {
       setLoading(true)
-      await axios.post('https://apiblood.herokuapp.com/api/accounts', values)
+      await axios.post('https://apiblood.herokuapp.com/api/account/register', values)
         .then(res => {
           console.log(res);
           setLoading(false)
