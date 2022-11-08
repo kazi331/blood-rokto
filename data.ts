@@ -275,3 +275,20 @@ export const countries = [
   { name: 'Zambia', code: 'ZM' },
   { name: 'Zimbabwe', code: 'Z' }
 ]
+import avatar from './public/avatars/avatar-female.png'
+export const doners = [
+  { id: 1, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: true,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+  { id: 2, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: false,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: true, last_donate: 'oct 2, 2022',  },
+  { id: 3, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: false,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+  { id: 4, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: true,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+  { id: 5, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: true,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+  { id: 6, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: false,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: true, last_donate: 'oct 2, 2022',  },
+  { id: 7, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: true,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+  { id: 8, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: true,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+  { id: 9, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: false,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+  { id: 10, name: 'Sayem Khan', email: 'test@mail.com', phone: '01612178331', is_available: true,  city: 'cumilla', avatar: avatar, date_joined: 'dec 2, 2022',  is_admin: false, last_donate: 'oct 2, 2022',  },
+]
+
+
+
+

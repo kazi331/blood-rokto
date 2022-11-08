@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import bg from '../../public/images/1.webp'
 import { PlayIcon } from '../Icons'
 import PrimaryBtn from '../utils/PrimaryBtn'
@@ -11,7 +12,7 @@ const Hero = () => {
           </div>
           <h2 className='text-primary text-xl md:text-2xl font-bold '> Donate Blood, Save Life !</h2>
           <h1 className='font-bold text-3xl md:text-4xl lg:text-6xl mb-8'>Donate Blood And <br /> Inspire Others. </h1>
-          <PrimaryBtn className='mt-4' >Explore Now</PrimaryBtn>
+          <PrimaryBtn className='mt-4' ><Link href="/campaign">Explore Now</Link></PrimaryBtn>
         </div>
       </div>
     </section>

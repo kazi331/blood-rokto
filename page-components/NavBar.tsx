@@ -10,6 +10,7 @@ const NavBar = () => {
           <Link href="/about" className='hover:text-primary transition'>About</Link>
           <Link href="/campaign" className='hover:text-primary transition'>Campaign</Link>
           <Link href="/contact" className='hover:text-primary transition'>Contact</Link>
+          <Link href="/login" className='hover:text-primary transition'>Login</Link>
         </div>
       </div>
     </nav>

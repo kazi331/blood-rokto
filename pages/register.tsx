@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { EyeClose, EyeOpen, Spinner, Spinner2 } from '../page-components/Icons';
+import { EyeClose, EyeOpen, Spinner } from '../page-components/Icons';
 import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Register.module.scss';
 
@@ -91,9 +91,9 @@ const Register = () => {
               </div>
 
             </div>
-            <button disabled={loading} className='w-full flex items-center justify-center bg-primary py-2 text-white font-bold mt-8' type="submit"> {loading && <Spinner />} <Spinner2 /> Register</button>
+            <button disabled={loading} className='w-full flex items-center justify-center bg-primary select-none py-2 text-white font-bold mt-8' type="submit"> {loading && <Spinner />} Register</button>
           </form>
-          <p className='text-xs text-right'>Have an account? <Link className='text-primary' href="/login">Login</Link></p>
+          <p className='text-xs text-right select-none'>Have an account? <Link className='text-primary' href="/login">Login</Link></p>
         </div >
       </div >
     </div >
