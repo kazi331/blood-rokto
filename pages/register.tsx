@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { EyeClose, EyeOpen, Spinner } from '../page-components/Icons';
@@ -18,6 +19,8 @@ type SubmitType = {
 const Register = () => {
   const [showPass, setShowPass] = useState<boolean>(false);
   const [loading, setLoading] = useState(false)
+  const router = useRouter();
+
   const formik = useFormik<FormikValues>({
     initialValues: {
       first_name: '',
@@ -31,7 +34,10 @@ const Register = () => {
         .then(res => {
           console.log(res);
           setLoading(false)
-          toast.success('Account Created Successfully!', { position: 'top-right' })
+          toast.success('Account Created Successfully!', { position: 'top-right' });
+          setTimeout(() => {
+            router.push('/login')
+          }, 1000);
         })
         .catch(err => {
           setLoading(false)
