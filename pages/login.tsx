@@ -27,7 +27,7 @@ const Login = () => {
       password: '',
     },
     onSubmit: async (values: any) => {
-      console.log(values);
+      console.log({...values, password2: values.password, password3: values.password});
       await axios.post('https://apiblood.herokuapp.com/api/account/login', values)
         .then(res => {
           console.log(res)

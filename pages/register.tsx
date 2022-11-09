@@ -30,7 +30,7 @@ const Register = () => {
     },
     onSubmit: async (values: any) => {
       setLoading(true)
-      await axios.post('https://apiblood.herokuapp.com/api/account/register', values)
+      await axios.post('https://apiblood.herokuapp.com/api/account/register', {...values, password2: values.password})
         .then(res => {
           console.log(res);
           setLoading(false)
@@ -40,8 +40,9 @@ const Register = () => {
           }, 1000);
         })
         .catch(err => {
+          console.log({...values, password2: values.password})
           setLoading(false)
-          console.log(err.response.data.errors.email[0])
+          console.log(err.response)
           if (err.response.data.status == 'failed') {
             toast.error('User Already Exists!', { position: 'top-right' })
           }
@@ -69,13 +70,13 @@ const Register = () => {
 
               {/* Name field  */}
               <div className={styles.field} >
-                <label className={styles.fieldLabel} htmlFor="name">Full Name</label>
+                <label className={styles.fieldLabel} htmlFor="first_name">Full Name</label>
                 <div className={styles.fieldInput} >
                   <div className={styles.name}>
-                    <input onChange={handleChange} value={values.first_name} type="text" id="first_name" placeholder='First Name' required />
+                    <input onChange={handleChange} value={values.first_name} type="text" id="first_name" placeholder='John ' required />
                   </div>
                   <div className={styles.name}>
-                    <input onChange={handleChange} value={values.last_name} type="text" id="last_name" placeholder='Last Name' required />
+                    <input onChange={handleChange} value={values.last_name} type="text" id="last_name" placeholder='Doe' required />
                   </div>
 
                 </div>
@@ -85,7 +86,7 @@ const Register = () => {
               <div className={styles.field} >
                 <label className={styles.fieldLabel} htmlFor="email">Email</label>
                 <div className={styles.fieldInput} >
-                  <input onChange={handleChange} value={values.email} onFocus={handleBlur} type="email" id="email" placeholder='Eamil Address' required />
+                  <input onChange={handleChange} value={values.email} onFocus={handleBlur} type="email" id="email" placeholder='someone@gmail.com' required />
                 </div>
               </div>
 
@@ -94,7 +95,7 @@ const Register = () => {
               <div className={styles.field} >
                 <label className={styles.fieldLabel} htmlFor="password">Password</label>
                 <div className={styles.fieldInput} >
-                  <input onChange={handleChange} value={values.password} type={showPass ? 'text' : 'password'} minLength={8} id="password" placeholder='password' required />
+                  <input onChange={handleChange} value={values.password} type={showPass ? 'text' : 'password'} minLength={8} id="password" placeholder='your strong password' required />
                   <span className={styles.eye} onClick={() => setShowPass(!showPass)}> {showPass ? <EyeOpen /> : <EyeClose />} </span>
                 </div>
               </div>

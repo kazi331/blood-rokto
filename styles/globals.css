@@ -6,8 +6,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-family:-apple-system, 'Raleway', Segoe UI, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, 'Raleway', Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -46,11 +46,22 @@ a {
 /* Toggle Switchers  */
 
 
-
-
-
-
-
+/* TAILWINDCSS CONFIG  */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*  MY CUSTOM CLASSES */
+@layer components {
+  .head-item {
+    @apply px-4 py-3 tracking-wider;
+  }
+
+  .action-btn {
+    @apply text-xl p-2 rounded active:translate-y-[2px] transition-all relative;
+  }
+
+  .tooltip {
+    @apply absolute -top-7 scale-0 group-hover:scale-100 transition-all bg-gray-800 shadow bg-opacity-60 text-white py-1 px-2 text-xs;
+  }
+}
