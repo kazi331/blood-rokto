@@ -91,7 +91,7 @@ const Footer = () => {
                 <label htmlFor="footer-field" className="leading-7 text-sm text-gray-400">Newslater</label>
                 <input type="text" id="footer-field" name="footer-field" className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-800   focus:bg-transparent  text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
               </div>
-              <button className="inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none ">Subscribe</button>
+              <button className="btn-primary bg-primary font-medium ">Subscribe</button>
               <p className="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 text-center sm:text-left">Bitters chicharrones fanny pack
                 <br className="lg:block hidden" />waistcoat green juice
               </p>

@@ -45,7 +45,7 @@ const Doners = () => {
   // }
 
   return (
-    <section className="text-gray-300 bg-dark1 body-font">
+    <div className="text-gray-300 bg-dark1 body-font w-full">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-white">Doner List</h1>
@@ -97,7 +97,7 @@ const Doners = () => {
           </table>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

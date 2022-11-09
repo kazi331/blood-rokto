@@ -57,6 +57,10 @@ a {
     @apply px-4 py-3 tracking-wider;
   }
 
+  .btn-primary {
+    @apply text-white hover:shadow-md py-3 px-4 font-bold;
+  }
+
   .action-btn {
     @apply text-xl p-2 rounded active:translate-y-[2px] transition-all relative;
   }

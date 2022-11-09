@@ -25,7 +25,7 @@ const Actions = () => {
                 quia adipisci neque nobis ratione cum ipsam voluptas suscipit.</p>
             </div>
           </div>
-          <button className='py-3 bg-black text-white font-bold w-full hover:shadow-md hover:shadow-black'>Read More</button>
+          <button className='bg-black hover:shadow-black text-white w-full btn-primary'>Read More</button>
         </div>
 
         {/* card 2  */}
@@ -39,7 +39,7 @@ const Actions = () => {
                 quia adipisci neque nobis ratione cum ipsam voluptas suscipit.</p>
             </div>
           </div>
-          <button className='py-3 bg-primary text-white font-bold w-full hover:shadow-md hover:shadow-primary'>Read More</button>
+          <button className='bg-primary hover:shadow-primary w-full btn-primary'>Read More</button>
         </div>
 
         {/* card 3 */}
@@ -53,7 +53,7 @@ const Actions = () => {
                 quia adipisci neque nobis ratione cum ipsam voluptas suscipit.</p>
             </div>
           </div>
-          <button className='py-3 bg-black text-white font-bold w-full hover:shadow-md hover:shadow-black'>Read More</button>
+          <button className='bg-black hover:shadow-black w-full btn-primary'>Read More</button>
         </div>
 
       </div>
