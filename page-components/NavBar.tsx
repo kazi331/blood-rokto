@@ -1,7 +1,16 @@
-import { Bars3Icon, BeakerIcon, LockClosedIcon, XCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useState } from 'react';
-import { CloseRound, ToggleRound } from './Icons';
+
+const pages = [
+  { slug: '/', label: 'Home' },
+  { slug: '/about', label: 'About' },
+  { slug: '/contact', label: 'Contact' },
+  { slug: '/campaign', label: 'Campaign' },
+  { slug: '/login', label: 'Login' },
+  { slug: '/register', label: 'Registration' },
+]
+
 
 const NavBar = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
@@ -12,26 +21,18 @@ const NavBar = () => {
 
         {/* Desktop Menu  */}
         <div className="hidden md:flex gap-x-4">
-          <Link href="/" className='hover:text-primary transition'>Home</Link>
-          <Link href="/about" className='hover:text-primary transition'>About</Link>
-          <Link href="/campaign" className='hover:text-primary transition'>Campaign</Link>
-          <Link href="/contact" className='hover:text-primary transition'>Contact</Link>
-          <Link href="/login" className='hover:text-primary transition'>Login</Link>
+          {pages.map((page, i) => <Link key={i} href={page.slug} className='hover:text-primary transition'>{page.label}</Link>)}
         </div>
 
         {/* mobile menu  */}
-        <div className={`${toggleMenu ? 'h-screen p-4 py-8' : 'h-0 overflow-hidden p-0'} flex transition-all justify-center items-end md:hidden fixed left-0 bottom-0 w-full h-screen bg-gray-900 bg-opacity-80 backdrop-blur-sm text-gray-200 z-10 `}>
-          <div className="flex flex-col w-full max-w-xs">
-            <Link href="/" className='active:bg-gray-600 active:bg-opacity-40 rounded p-1 px-3 transition min-w-max '>Home</Link>
-            <Link href="/about" className='active:bg-gray-600 active:bg-opacity-40 rounded p-1 px-3 transition min-w-max '>About</Link>
-            <Link href="/campaign" className='active:bg-gray-600 active:bg-opacity-40 rounded p-1 px-3 transition min-w-max '>Campaign</Link>
-            <Link href="/contact" className='active:bg-gray-600 active:bg-opacity-40 rounded p-1 px-3 transition min-w-max '>Contact</Link>
-            <Link href="/login" className='active:bg-gray-600 active:bg-opacity-40 rounded p-1 px-3 transition min-w-max '>Login</Link>
+        <div onClick={(e) => setToggleMenu(false)} className={`${toggleMenu ? 'top-0' : 'top-full overflow-hidden'} flex top-100 h-screen w-full p-4 py-8 transition-all duration-300 justify-center items-end md:hidden fixed left-0  w-fulx bg-gray-900 bg-opacity-80 backdrop-blur-sm text-gray-200 z-10 `}>
+          <div className="flex flex-col w-full md:max-w-xs bg-gray-800 bg-opacity-40 p-3 rounded backdrop-blur">
+            {pages.map((page, i) => <Link key={i} href={page.slug} className='hover:bg-gray-600 hover:bg-opacity-40 rounded p-1 px-2 transition min-w-max '>{page.label}</Link>)}
           </div>
         </div>
 
         {/* toggle */}
-        <div className="fixed bottom-10 right-10 z-20">
+        <div className="fixed bottom-10 right-6 z-20">
           <button className='block md:hidden  text-white bg-gray-800 bg-opacity-60 backdrop-blur-lg p-2 text-2xl rounded-3xl shadow-sm shadow-gray-900' onClick={() => setToggleMenu(!toggleMenu)}>
             {toggleMenu ? <XMarkIcon className='w-6 h-6' /> : <Bars3Icon className='w-6 h-6' />}
           </button>
