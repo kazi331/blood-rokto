@@ -25,7 +25,7 @@ const NavBar = () => {
         </div>
 
         {/* mobile menu  */}
-        <div onClick={(e) => setToggleMenu(false)} className={`${toggleMenu ? 'top-0' : 'top-full overflow-hidden'} flex top-100 h-screen w-full p-4 py-8 transition-all duration-300 justify-center items-end md:hidden fixed left-0  w-fulx bg-gray-900 bg-opacity-80 backdrop-blur-sm text-gray-200 z-10 `}>
+        <div onClick={(e) => setToggleMenu(false)} className={`${toggleMenu ? 'bottom-0' : '-bottom-full overflow-hidden'} flex top-100 h-screen w-full p-4 py-8 transition-all duration-300 justify-center items-end md:hidden fixed left-0  bg-gray-900 bg-opacity-80 backdrop-blur-sm text-gray-200 z-10 `}>
           <div className="flex flex-col w-full md:max-w-xs bg-gray-800 bg-opacity-40 p-3 rounded backdrop-blur">
             {pages.map((page, i) => <Link key={i} href={page.slug} className='hover:bg-gray-600 hover:bg-opacity-40 rounded p-1 px-2 transition min-w-max '>{page.label}</Link>)}
           </div>
