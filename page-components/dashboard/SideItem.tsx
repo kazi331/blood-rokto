@@ -1,10 +1,9 @@
-import { Twitter } from '../Icons'
 
-const SideItem = ({ toggle, icon, label}: { toggle: boolean, icon:any, label: string }) => {
+const SideItem = ({ toggle, icon, label }: { toggle: boolean, icon: any, label: string }) => {
   return (
-    <div className='flex gap-2 p-2'>
-      <div className='relative'>{icon}</div>
-      <div className={`${toggle? 'scale-100': 'scale-0'} transition-all `}>{label}</div>
+    <div className='flex items-center gap-4 rounded hover:bg-gray-700 cursor-pointer transition-all duration-75 p-3 py-2'>
+      <div>{icon}</div>
+      <div className={`${toggle ? '' : ''} overflow-hidden transition-all `}>{label}</div>
     </div>
   )
 }
