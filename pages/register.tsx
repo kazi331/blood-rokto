@@ -8,6 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { EyeClose, EyeOpen, Spinner } from '../page-components/Icons';
 import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Register.module.scss';
+import update from '../styles/Update.module.scss';
 
 
 const Register = () => {
@@ -18,13 +19,11 @@ const Register = () => {
   const formik = useFormik<FormikValues>({
     initialValues: {
       first_name: '',
-      last_name: '',
-      email: '',
-      password: '',
     },
     onSubmit: async (values: any) => {
+      console.log({ ...values, password2: values.password })
       setLoading(true)
-      await axios.post('https://apiblood.herokuapp.com/api/account/register', {...values, password2: values.password})
+      await axios.post('https://apiblood.herokuapp.com/api/account/register', { ...values, password2: values.password })
         .then(res => {
           console.log(res);
           setLoading(false)
@@ -34,7 +33,6 @@ const Register = () => {
           }, 1000);
         })
         .catch(err => {
-          console.log({...values, password2: values.password})
           setLoading(false)
           console.log(err.response)
           if (err.response.data.status == 'failed') {
@@ -92,6 +90,18 @@ const Register = () => {
                   <input onChange={handleChange} value={values.password} type={showPass ? 'text' : 'password'} minLength={8} id="password" placeholder='your strong password' required />
                   <span className={styles.eye} onClick={() => setShowPass(!showPass)}> {showPass ? <EyeOpen /> : <EyeClose />} </span>
                 </div>
+              </div>
+
+                 {/* Available button */}
+                 <div className="flex items-center justify-between">
+                <span>
+                  <label htmlFor='available' className='select-none cursor-pointer'>Available</label>
+                  <span className='text-xs'> ( Are you available now to donate blood? )</span>
+                </span>
+                <span>
+                  <input onChange={handleChange} value={values.is_available} type="checkbox" name="is_available" id="is_available" />
+                  <label className={update.switchLable} htmlFor="is_available"></label>
+                </span>
               </div>
 
             </div>

@@ -27,19 +27,21 @@ const Login = () => {
       password: '',
     },
     onSubmit: async (values: any) => {
-      console.log({...values, password2: values.password, password3: values.password});
-      await axios.post('https://apiblood.herokuapp.com/api/account/login', values)
+      await axios.post('https://apiblood.herokuapp.com/api/account/login', {...values, password2: values.password})
         .then(res => {
-          console.log(res)
+          console.log(res.data)
           if (res.data.status === 'success') {
             console.log(res.data.status)
             toast.success('Login Success!', { position: 'top-right' })
             setTimeout(() => {
-              router.push('/dashboard')
+              router.push('/update-profile')
             }, 1000);
           }
         })
-        .catch(err => console.log(err))
+        .catch(err =>{
+          console.log(err.response.data.errors.non_field_errors[0])
+          toast.error(err.response.data.errors.non_field_errors[0])
+        })
     }
   });
 

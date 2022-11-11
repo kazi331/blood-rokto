@@ -16,11 +16,11 @@ const links = [
 const Footer = () => {
   return (
     <footer className='bg-gray-900 text-white select-none'>
-      <div className="container mx-auto py-24 flex flex-col md:flex-row flex-wrap gap-x-4 px-4 md:px-0 ">
+      <div className="container mx-auto py-24 flex flex-col md:flex-row flex-wrap gap-4 px-4 md:px-0 ">
 
         {/* About Us  */}
         <div className="flex-1 ">
-          <h2 className='mb-10 font-bold text-xl'>About Us</h2>
+          <h2 className=' mb-2 md:mb-10 mt-6 md:mt-0 font-bold text-xl'>About Us</h2>
           <p className='mb-6'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla quo repellendus rerum sapiente
             dolor repudiandae saepe neque atque est explicabo.</p>
           <p><span className="font-bold">Phone: </span>+880 1612178331</p>
@@ -29,7 +29,7 @@ const Footer = () => {
 
         {/* Quick Links  */}
         <div className="flex-1">
-          <h2 className='font-bold text-xl mb-10'>Quick Links</h2>
+          <h2 className='font-bold text-xl  mb-2 md:mb-10 mt-6 md:mt-0'>Quick Links</h2>
           <div className="flex flex-col gap-y-1">
             {
               links.map((link, i) => {
@@ -44,7 +44,7 @@ const Footer = () => {
 
         {/* Our Service  */}
         <div className="flex-1">
-          <h2 className='font-bold text-xl mb-10'>Out Services </h2>
+          <h2 className='font-bold text-xl  mb-2 md:mb-10 mt-6 md:mt-0'>Out Services </h2>
           <div className="flex flex-col gap-y-1">
             {
               links.map((link, i) => {
@@ -59,7 +59,7 @@ const Footer = () => {
 
         {/* Lates News  */}
         <div className="flex-1">
-          <h2 className='font-bold text-xl mb-10'>Latest News</h2>
+          <h2 className='font-bold text-xl  mb-2 md:mb-10 mt-6 md:mt-0'>Latest News</h2>
           <div className="flex flex-col gap-y-6">
 
             <div className="flex gap-x-2 items-center">

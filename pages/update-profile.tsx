@@ -1,8 +1,11 @@
+import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
 import { useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
+import toast from 'react-hot-toast';
 
 import { bloodGroups, countries, days, months, years } from '../data';
+import { Spinner } from '../page-components/Icons';
 import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Update.module.scss';
 
@@ -21,18 +24,39 @@ const UpdateProfile = () => {
       country: 'Bangladesh',
     },
     onSubmit: async () => {
+      setLoading(true)
       setLoading(true);
-      console.log(values)
+      setUserInfo({
+        fname: values.first_name,
+        lname: values.last_name,
+        bloodgroup: values.blood,
+        phone_number: values.phone,
+        city: values.city,
+        state: values.state,
+        country: values.country,
+        dob: values.dobY + "-" + values.dobM + "-" + values.dobD,
+        lastdonatedate: values.lastY + "-" + values.lastM + "-" + values.lastD,
+      })
+      console.log(userInfo)
+      try {
+        const res = await axios.post(`https://apiblood.herokuapp.com/api/blooddonor`, userInfo)
+        console.log(res.data.status)
+        if (res.data.status === 'success') toast.success('Doner Registered!')
+        setLoading(false)
+      } catch (err) {
+        console.log(err)
+        setLoading(false)
+      }
     }
   });
   const { values, handleChange, handleBlur, handleReset, handleSubmit } = formik;
 
   return (
     <div>
-      <PageHeader title="Update Blood Doner Profile" page="update-profile" />
+      <PageHeader title="Register As a Doner" page="update-profile" />
       <div className="container mx-auto flex items-center justify-center py-20" >
         <div className="py-4 min-w-min border p-8">
-          <h2 className='text-3xl font-bold text-center py-4'>Doner Profile Update</h2>
+          <h2 className='text-3xl font-bold text-center py-4'>Register As Doner</h2>
           <form onSubmit={handleSubmit} className={styles.updateForm}>
 
             {/* Form fields  */}
@@ -112,7 +136,7 @@ const UpdateProfile = () => {
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="phone">Phone Number</label>
                 <div className={styles.fieldInput}>
-                  <input type="tel" maxLength={11} minLength={11} pattern="[0-9]{11}" id="phone" name="phone" placeholder='phone number (11 digits)' />
+                  <input onChange={handleChange} value={values.phone} type="tel" maxLength={11} minLength={11} pattern="[0-9]{11}" id="phone" name="phone" placeholder='phone number (11 digits)' />
                 </div>
               </div>
 
@@ -122,10 +146,10 @@ const UpdateProfile = () => {
                 <label className={styles.fieldLabel} htmlFor="street">Address</label>
                 <div className={styles.fieldInput}>
                   <div className="flex flex-col w-full gap-y-2">
-                    <input type="text" id="street" placeholder='Street' />
-                    <input type="text" id="city" placeholder='City' />
-                    <input type="text" id="state" placeholder='State/Province' />
-                    <select name="country" id="country" required>
+                    <input onChange={handleChange} value={values.street} type="text" id="street" placeholder='Street' />
+                    <input onChange={handleChange} value={values.city} type="text" id="city" placeholder='City' />
+                    <input onChange={handleChange} value={values.state} type="text" id="state" placeholder='State/Province' />
+                    <select onChange={handleChange} value={values.country} name="country" id="country" required>
                       {/* <option value="bd" >Bangladesh</option> */}
                       {countries.map((country) => <option key={country.code} value={country.code}>{country.name}</option>)}
                     </select>
@@ -140,13 +164,13 @@ const UpdateProfile = () => {
                   <span className='text-xs'> ( Are you available now to donate blood? )</span>
                 </span>
                 <span>
-                  <input type="checkbox" name="available" id="available" />
+                  <input onChange={handleChange} value={values.available} type="checkbox" name="is_available" id="available" />
                   <label className={styles.switchLable} htmlFor="available"></label>
                 </span>
               </div>
             </div>
 
-            <button className='w-full bg-primary py-2 text-white font-bold mt-8' type="submit">Update Profile</button>
+            <button disabled={loading} className='w-full bg-primary py-2 text-white font-bold mt-8' type="submit"> {loading && <Spinner />} Update Profile</button>
           </form>
 
         </div >

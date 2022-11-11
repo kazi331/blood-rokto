@@ -1,9 +1,10 @@
 import axios from 'axios';
 import moment from 'moment';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 // import { doners } from '../../data'
-import avatarImg from '../../public/avatars/avatar-female.png'
+import avatarImg from '../../public/avatars/avatar-female.png';
 import { Edit, Trash } from '../Icons';
 
 
@@ -24,9 +25,10 @@ const Doners = () => {
   const [loading, setLoading] = useState(false)
 
   const getDoners = async () => {
-    await axios.get('https://apiblood.herokuapp.com/api/accounts')
+    await axios.get('https://apiblood.herokuapp.com/api/blooddonor')
       .then(res => {
-        setDoners(res.data.account)
+        setDoners(res.data.bloodDonor)
+        console.log(res.data.bloodDonor)
         setLoading(false)
         // console.log(res.data);
       })
@@ -39,7 +41,16 @@ const Doners = () => {
     getDoners();
   }, [])
 
-
+  const handleDelete = async (id: number) => {
+    try {
+      const res = await axios.delete(`https://apiblood.herokuapp.com/api/blooddonor/` + id)
+      console.log(res.data.status)
+      toast('Deleted!')
+      window.location.reload();
+    } catch (err) {
+      console.log(err)
+    }
+  }
   // if (doners.length < 1) {
   //   return <p>No doners found!</p>
   // }
@@ -55,11 +66,10 @@ const Doners = () => {
           <table className="table-auto w-full text-left whitespace-no-wrap">
             <thead>
               <tr className='bg-gray-800 font-medium text-white text-sm'>
-                <th className="head-item">ID</th>
+                <th className="head-item">SL</th>
                 <th className="head-item">Avatar</th>
                 <th className="head-item">Name</th>
                 <th className="head-item">City</th>
-                <th className="head-item">Email</th>
                 <th className="head-item">Phone</th>
                 <th className="head-item">Age</th>
                 <th className="head-item">Joined</th>
@@ -69,15 +79,14 @@ const Doners = () => {
             </thead>
             <tbody >
 
-              {doners.length > 0 && doners?.map(doner => {
-                const { id, first_name, last_name, email, phone, date_joined, city, is_available, avatar } = doner;
+              {doners.length > 0 && doners?.map((doner, i) => {
+                const { id, fname, lname, phone_number, date_joined, city, is_available, avatar } = doner;
                 return <tr key={id} className="whitespace-nowrap hover:bg-dark-hover hover:bg-opacity-20 pl-2">
-                  <td className="px-2 py-3">{id}</td>
+                  <td className="px-2 py-3">{i}</td>
                   <td className="px-2 py-3"> <Image className='rounded-full' src={avatarImg.src} width="40" height="40" alt="user-avatar" /> </td>
-                  <td className="px-2 py-3">{first_name} {last_name}</td>
-                  <td className="px-2 py-3"> {"Cumilla"} </td>
-                  <td className="px-2 py-3"> {email}</td>
-                  <td className="px-2 py-3"> 01612178331</td>
+                  <td className="px-2 py-3">{fname} {lname}</td>
+                  <td className="px-2 py-3"> {city} </td>
+                  <td className="px-2 py-3"> {phone_number}</td>
                   <td className="px-2 py-3"> 25</td>
                   <td className="px-2 py-3"> {moment(date_joined).format('ll')} </td>
                   <td className="px-2 py-3">
@@ -87,7 +96,7 @@ const Doners = () => {
                   </td>
                   <td className="px-2 py-3">
                     <div className='flex gap-2'>
-                      <button className='text-red-500 bg-red-500 bg-opacity-10 action-btn group'><Trash /> <span className='-left-2 tooltip'>Delete</span></button>
+                      <button onClick={() => handleDelete(id)} className='text-red-500 bg-red-500 bg-opacity-10 action-btn group'><Trash /> <span className='-left-2 tooltip'>Delete</span></button>
                       <button className='text-blue-400 bg-blue-500 bg-opacity-10 action-btn group'><Edit /> <span className='-left-1 tooltip'>Edit</span></button>
                     </div>
                   </td>

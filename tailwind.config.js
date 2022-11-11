@@ -14,6 +14,9 @@ module.exports = {
         'dark-hover': '#343D55'
       }
     },
+    container: {
+      center: true,
+    }
   },
   plugins: [
     require('tailwindcss'),
