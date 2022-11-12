@@ -3,21 +3,14 @@ import { FormikValues, useFormik } from 'formik';
 import { useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
-
 import { bloodGroups, countries, days, months, years } from '../data';
+import { ProfileInputs } from '../DataTypes';
 import { Spinner } from '../page-components/Icons';
 import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Update.module.scss';
 
-
-type Inputs = {
-  first_name: string, last_name: string,
-  city: string, street: string, state: string, country: string
-  phone: number, dob: Date, lastDonate: Date, blood: string, available: boolean,
-}
-
 const UpdateProfile = () => {
-  const [userInfo, setUserInfo] = useState<Inputs | {}>({});
+  const [userInfo, setUserInfo] = useState<ProfileInputs | {}>({});
   const [loading, setLoading] = useState<boolean>(false)
   const formik = useFormik<FormikValues>({
     initialValues: {

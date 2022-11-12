@@ -29,6 +29,52 @@ input:focus {
   outline: none !important;
 }
 
+/* Tooltip CSS  */
+.tooltip-wrapper {
+  position: relative;
+}
+
+.tooltip-content {
+  position: absolute;
+  z-index: 100;
+  background: rgb(99, 99, 99);
+  white-space: nowrap;
+  padding: 1px 6px;
+  font-size: .9rem;
+  border-radius: 3px;
+  color: whitesmoke;
+  pointer-events: none;
+}
+
+.tooltip-content.top {
+  bottom: 100%;
+  margin-bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-content.left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 4px;
+}
+
+.tooltip-content.right {
+  left: 100%;
+  margin-left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-content.bottom {
+  top: 100%;
+  margin-top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -49,33 +95,5 @@ input:focus {
   .main-nav {
     background: linear-gradient(to right, #EA062B 18%, white 19%);
     color: red;
-  }
-}
-
-
-/* Toggle Switchers  */
-
-
-/* TAILWINDCSS CONFIG  */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/*  MY CUSTOM CLASSES */
-@layer components {
-  .head-item {
-    @apply px-4 py-3 tracking-wider;
-  }
-
-  .btn-primary {
-    @apply text-white hover:shadow-md py-3 px-4 font-bold;
-  }
-
-  .action-btn {
-    @apply text-xl p-2 rounded active:translate-y-[2px] transition-all relative;
-  }
-
-  .tooltip {
-    @apply absolute -top-7 scale-0 group-hover:scale-100 transition-all bg-gray-800 shadow bg-opacity-60 text-white py-1 px-2 text-xs;
   }
 }

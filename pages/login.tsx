@@ -10,12 +10,6 @@ import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Register.module.scss';
 
 
-// TYPE DEFINATION
-type SubmitType = {
-  preventDefault: () => void;
-  target: { value: any; };
-}
-
 const Login = () => {
   const [showPass, setShowPass] = useState<boolean>(false);
 

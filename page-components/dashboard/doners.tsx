@@ -3,20 +3,13 @@ import axios from 'axios';
 import moment from 'moment';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
+import { DonerType } from '../../DataTypes';
 import avatarImg from '../../public/avatars/avatar-female.png';
 import { Edit, Trash } from '../Icons';
 
-type DonerType = {
-  id: number;
-  fname: string; lname: string;
-  phone_number: string;
-  date_joined: string;
-  city: string;
-  is_available: boolean;
-  avatar: string;
-}
-const fetchDoners = () => axios('https://apiblood.herokuapp.com/api/blooddonor')
 
+const fetchDoners = () => axios('https://apiblood.herokuapp.com/api/blooddonor')
+const THs = ["SL", "Avatar", "Name", "City", "Phone", "Age", "Joined", "Status", "Action"]
 const Doners = () => {
   const { data, isLoading, isError, refetch } = useQuery(['get-doners'], fetchDoners)
   const handleDelete = async (id: number) => {
@@ -31,7 +24,6 @@ const Doners = () => {
     }
   }
 
-
   return (
     <div className="text-gray-300 bg-dark1 body-font w-full overflow-auto " style={{}}>
       <div className="container px-5 py-24 mx-auto">
@@ -42,16 +34,9 @@ const Doners = () => {
         <div className="xl:w-5/6 w-full mx-auto overflow-auto rounded">
           <table className="table-auto w-full text-left whitespace-no-wrap">
             <thead>
+              {/* Head items  */}
               <tr className='bg-gray-800 font-medium text-white text-sm'>
-                <th className="head-item">SL</th>
-                <th className="head-item">Avatar</th>
-                <th className="head-item">Name</th>
-                <th className="head-item">City</th>
-                <th className="head-item">Phone</th>
-                <th className="head-item">Age</th>
-                <th className="head-item">Joined</th>
-                <th className="head-item">Status</th>
-                <th className="head-item">Action</th>
+                {THs.map((t, i) => <th key={i} className="head-item">{t}</th>)}
               </tr>
             </thead>
             <tbody >
@@ -64,7 +49,7 @@ const Doners = () => {
               {data?.data.bloodDonor.map((doner: DonerType, i: number) => {
                 const { id, fname, lname, phone_number, date_joined, city, is_available, avatar } = doner;
                 return <tr key={id} className="whitespace-nowrap hover:bg-dark-hover hover:bg-opacity-20 pl-2">
-                  <td className="px-2 py-3">{i}</td>
+                  <td className="px-2 py-3">{i + 1}</td>
                   <td className="px-2 py-3"> <Image className='rounded-full' src={avatarImg.src} width="40" height="40" alt="user-avatar" /> </td>
                   <td className="px-2 py-3">{fname} {lname}</td>
                   <td className="px-2 py-3"> {city} </td>

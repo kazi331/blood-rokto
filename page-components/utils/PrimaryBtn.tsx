@@ -1,13 +1,7 @@
 import React from 'react'
+import { PrimaryBtnProps } from '../../DataTypes';
 
-type Props = {
-  bg?: string,
-  color?: string,
-  children: React.ReactNode,
-  className?: string
-}
-
-const PrimaryBtn = (props: Props) => {
+const PrimaryBtn = (props: PrimaryBtnProps) => {
   const { bg, color, className, children } = props;
   return (
     <div className={className}>

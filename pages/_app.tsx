@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Footer from '../page-components/Footer'
 import NavBar from '../page-components/NavBar'
 import '../styles/globals.css'
+import '../styles/tailwindGlobal.css'
 
 
 
