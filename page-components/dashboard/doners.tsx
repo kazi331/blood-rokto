@@ -1,59 +1,36 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import moment from 'moment';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-// import { doners } from '../../data'
 import avatarImg from '../../public/avatars/avatar-female.png';
 import { Edit, Trash } from '../Icons';
 
-
-type DonersType = [
-  {
-    id: number,
-    name: string,
-    email: string,
-    phone: string,
-    city: string,
-    is_available: boolean,
-    avatar: string,
-  }
-]
+type DonerType = {
+  id: number;
+  fname: string; lname: string;
+  phone_number: string;
+  date_joined: string;
+  city: string;
+  is_available: boolean;
+  avatar: string;
+}
+const fetchDoners = () => axios('https://apiblood.herokuapp.com/api/blooddonor')
 
 const Doners = () => {
-  const [doners, setDoners] = useState([])
-  const [loading, setLoading] = useState(false)
-
-  const getDoners = async () => {
-    await axios.get('https://apiblood.herokuapp.com/api/blooddonor')
-      .then(res => {
-        setDoners(res.data.bloodDonor)
-        console.log(res.data.bloodDonor)
-        setLoading(false)
-        // console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err)
-        setLoading(false)
-      })
-  }
-  useEffect(() => {
-    getDoners();
-  }, [])
-
+  const { data, isLoading, isError, refetch } = useQuery(['get-doners'], fetchDoners)
   const handleDelete = async (id: number) => {
     try {
       const res = await axios.delete(`https://apiblood.herokuapp.com/api/blooddonor/` + id)
       console.log(res.data.status)
       toast('Deleted!')
-      window.location.reload();
+      // window.location.reload();
+      refetch();
     } catch (err) {
       console.log(err)
     }
   }
-  // if (doners.length < 1) {
-  //   return <p>No doners found!</p>
-  // }
+
 
   return (
     <div className="text-gray-300 bg-dark1 body-font w-full overflow-auto " style={{}}>
@@ -78,8 +55,13 @@ const Doners = () => {
               </tr>
             </thead>
             <tbody >
-
-              {doners.length > 0 && doners?.map((doner, i) => {
+              {isLoading && <tr>
+                <td className='p-10'>loading...</td>
+              </tr>}
+              {isError && <tr>
+                <td className='p-10'>Something is wrong! <br /> See Console</td>
+              </tr>}
+              {data?.data.bloodDonor.map((doner: DonerType, i: number) => {
                 const { id, fname, lname, phone_number, date_joined, city, is_available, avatar } = doner;
                 return <tr key={id} className="whitespace-nowrap hover:bg-dark-hover hover:bg-opacity-20 pl-2">
                   <td className="px-2 py-3">{i}</td>
@@ -102,6 +84,7 @@ const Doners = () => {
                   </td>
                 </tr>
               })}
+
             </tbody>
           </table>
         </div>
