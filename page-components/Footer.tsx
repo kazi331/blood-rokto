@@ -16,7 +16,7 @@ const links = [
 const Footer = () => {
   return (
     <footer className='bg-gray-900 text-white select-none'>
-      <div className="container mx-auto py-24 flex flex-col md:flex-row flex-wrap gap-4 px-4 md:px-0 ">
+      <div className="container mx-auto py-24 flex flex-col md:flex-row flex-wrap gap-4 px-4 md:px-10 ">
 
         {/* About Us  */}
         <div className="flex-1 ">

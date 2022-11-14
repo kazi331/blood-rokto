@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 export type DonerType = {
   id: number;
   fname: string; lname: string;
@@ -21,8 +21,8 @@ export type ProfileInputs = {
 }
 export type TooltipType = {
   children: React.ReactNode,
-  direction?: string,
-  content: string,
+  direction?: 'left' | 'right' | 'top' | 'bottom',
+  content: string | ReactElement,
   delay?: number,
   className?: string
 }

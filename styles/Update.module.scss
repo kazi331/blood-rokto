@@ -35,29 +35,7 @@ $xl2: "only screen and (min-width:  1536px)";
     background: #EA062B;
   }
 
-  .switchLable {
-    cursor: pointer;
-    text-indent: -9999px;
-    width: 42px;
-    height: 20px;
-    background: grey;
-    display: block;
-    border-radius: 100px;
-    position: relative;
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 20px;
-      height: 100%;
-      background: #fff;
-      box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.3);
-      border-radius: 90px;
-      transition: cubic-bezier(.68, -0.55, .27, 1.55) 0.2s;
-    }
-  }
 
   // register form
 
@@ -135,4 +113,29 @@ $xl2: "only screen and (min-width:  1536px)";
     }
   }
 
+}
+
+
+.switchLable {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 42px;
+  height: 20px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 20px;
+    height: 100%;
+    background: #fff;
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 90px;
+    transition: cubic-bezier(.68, -0.55, .27, 1.55) 0.2s;
+  }
 }

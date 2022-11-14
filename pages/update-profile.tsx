@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
 import { bloodGroups, countries, days, months, years } from '../data';
 import { ProfileInputs } from '../DataTypes';
 import { Spinner } from '../page-components/Icons';
+import { Layout } from '../page-components/Layout';
 import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Update.module.scss';
 
@@ -173,4 +174,7 @@ const UpdateProfile = () => {
 }
 
 export default UpdateProfile;
+UpdateProfile.getLayout = function getLayout(page: ReactElement){
+  return <Layout>{page}</Layout>
+}
 

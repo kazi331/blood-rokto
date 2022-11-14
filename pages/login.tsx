@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { EyeClose, EyeOpen } from '../page-components/Icons';
-import PageHeader from '../page-components/utils/PageHeader';
 import styles from '../styles/Register.module.scss';
 
 
@@ -21,7 +20,7 @@ const Login = () => {
       password: '',
     },
     onSubmit: async (values: any) => {
-      await axios.post('https://apiblood.herokuapp.com/api/account/login', {...values, password2: values.password})
+      await axios.post('https://apiblood.herokuapp.com/api/account/login', { ...values, password2: values.password })
         .then(res => {
           console.log(res.data)
           if (res.data.status === 'success') {
@@ -32,7 +31,7 @@ const Login = () => {
             }, 1000);
           }
         })
-        .catch(err =>{
+        .catch(err => {
           console.log(err.response.data.errors.non_field_errors[0])
           toast.error(err.response.data.errors.non_field_errors[0])
         })
@@ -48,9 +47,9 @@ const Login = () => {
       <Head>
         <title>Rokto - Login</title>
       </Head>
-      <PageHeader title="Login To Your Account" page="Login" />
-      <div className="container mx-auto flex items-center justify-center py-20" >
-        <div className="py-4 min-w-min border p-8">
+      {/* <PageHeader title="Login To Your Account" page="Login" /> */}
+      <div className="flex items-center justify-center min-h-screen p-4 md:p-20" >
+        <div className="py-4 min-w-min ring-1 ring-gray-200 shadow-xl  p-4 md:p-8">
           <h2 className='text-3xl font-bold text-center py-4'>Blood Ai Organization</h2>
           <form className={styles.registerForm} onSubmit={handleSubmit}  >
 
@@ -76,9 +75,12 @@ const Login = () => {
               </div>
 
             </div>
-            <button className='w-full bg-primary py-2 text-white font-bold mt-8' type="submit">Login</button>
+            <button className='select-none w-full bg-primary py-2 text-white font-bold mt-8' type="submit">Login</button>
           </form>
-          <p className='text-xs text-right'>New to Rokto?<Link className='text-primary' href="/register"> Register</Link></p>
+          <div className="flex justify-between">
+          <p className='text-xs text-left select-none'>Back to<Link className='text-primary' href="/"> Home</Link></p>
+          <p className='text-xs text-right select-none'>New to Rokto?<Link className='text-primary' href="/register"> Register</Link></p>
+          </div>
         </div >
       </div >
     </div >

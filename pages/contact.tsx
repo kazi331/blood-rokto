@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { ReactElement } from 'react'
+import { Layout } from '../page-components/Layout'
 import Tooltip from '../page-components/utils/Tooltip'
 
-const contact = () => {
+const Contact = () => {
   return (
     <>
       <Head>
@@ -22,4 +23,8 @@ const contact = () => {
   )
 }
 
-export default contact
+export default Contact
+
+Contact.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
+}

@@ -16,8 +16,8 @@ const pages = [
 const NavBar = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
   return (
-    <nav className='main-nav shadow'>
-      <div className="container mx-auto flex flex-wrap justify-between items-center px-2 md:px-4 lg:px-16 xl:px-0 font-medium text-lg">
+    <nav className='main-nav '>
+      <div className="container mx-auto flex flex-wrap justify-between items-center px-2 md:px-4 font-medium text-lg">
         <Link href="/" className=' text-3xl font-bold text-white bg-primary p-4'>Blood Ai</Link>
 
         {/* Desktop Menu  */}
@@ -26,7 +26,7 @@ const NavBar = () => {
         </div>
 
         {/* mobile menu  */}
-        <div onClick={(e) => setToggleMenu(false)} className={`${toggleMenu ? 'bottom-0' : '-bottom-full p-0 m-0 overflow-hidden'} flex top-100 h-screen w-full p-4 py-8 transition-all duration-300 justify-center items-end lg:hidden fixed left-0  bg-gray-900 bg-opacity-80 backdrop-blur-lg text-gray-200 z-10 `}>
+        <div onClick={(e) => setToggleMenu(false)} className={`${toggleMenu ? 'bottom-0 p-4' : '-bottom-[110vh] p-0 m-0 overflow-hidden'} flex top-100 h-screen  w-full  py-8 transition-all duration-300 justify-center items-end lg:hidden fixed left-0  bg-gray-700 bg-opacity-80 backdrop-blur-lg text-gray-200 z-10 `}>
           <div className="flex flex-col w-full md:max-w-xs bg-gray-800 bg-opacity-40 p-3 rounded backdrop-blur">
             {pages.map((page, i) => <Link key={i} href={page.slug} className='hover:bg-gray-600 hover:bg-opacity-40 rounded p-1 px-2 transition min-w-max '>{page.label}</Link>)}
           </div>

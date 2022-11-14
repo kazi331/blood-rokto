@@ -1,3 +1,4 @@
+import { Ubuntu } from '@next/font/google'
 import Image from 'next/image'
 import actionImage from '../../public/images/1.webp'
 import actionImage2 from '../../public/images/2.webp'
@@ -5,15 +6,13 @@ import actionImage3 from '../../public/images/3.webp'
 import icon3 from '../utils/blood-donate.svg'
 import icon from '../utils/blood.svg'
 import icon2 from '../utils/blood2.svg'
-import PrimaryBtn from '../utils/PrimaryBtn'
 
-
+const roboto = Ubuntu({ weight: '400' });
 
 const Actions = () => {
   return (
-    <section className="py-40 bg-orange-50/50">
+    <section className={`py-20 md:pt-40 lg:pt-40 bg-orange-50/50 ${roboto.className}`}>
       <div className="flex flex-wrap gap-4 items-center justify-center px-2">
-
         {/* card 1  */}
         <div className='bg-white shadow rounded'>
           <div className="p-4 max-w-xs relative">
@@ -55,7 +54,6 @@ const Actions = () => {
           </div>
           <button className='bg-black hover:shadow-black w-full btn-primary'>Read More</button>
         </div>
-
       </div>
     </section>
   )

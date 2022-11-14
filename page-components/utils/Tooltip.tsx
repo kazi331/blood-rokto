@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { TooltipType } from '../../DataTypes'
+import styles from './../../styles/Tooltip.module.scss'
 
 const Tooltip = ({ children, direction, content, delay, className }: TooltipType) => {
   const [show, setShow] = useState(false);
@@ -16,13 +17,13 @@ const Tooltip = ({ children, direction, content, delay, className }: TooltipType
   }
   return (
     <div
-      className={`tooltip-wrapper ${className}`}
+      className={`tooltipWrapper ${className}`}
       onMouseEnter={showTip}
       onMouseLeave={hideTip}
     >
       {children}
       {show && (
-        <div className={`tooltip-content ${direction || 'top'}`}>
+        <div className={`tooltipContent ${direction} `}>
           {content}
         </div>
       )}

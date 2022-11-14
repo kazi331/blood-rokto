@@ -1,0 +1,44 @@
+/* Tooltip CSS  */
+.tooltipWrapper {
+  position: relative;
+}
+
+.tooltipContent {
+  position: absolute;
+  z-index: 100;
+  background: rgb(99, 99, 99);
+  white-space: nowrap;
+  padding: 1px 6px;
+  font-size: .9rem;
+  border-radius: 3px;
+  color: whitesmoke;
+  pointer-events: none;
+}
+
+.top {
+  bottom: 100%;
+  margin-bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 4px;
+}
+
+.right {
+  left: 100%;
+  margin-left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bottom {
+  top: 100%;
+  margin-top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}

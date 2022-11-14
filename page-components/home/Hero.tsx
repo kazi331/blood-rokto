@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section style={{ backgroundImage: `url(${bg.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }} className="">
       <div className="bg-gradient-to-r from-white">
-        <div className="container flex flex-col gap-4 mx-auto py-40 px-4 md:px-10 lg:px-20">
+        <div className="container flex flex-col gap-4 py-40 px-4 md:px-10 lg:px-20">
           <div className="flex items-center gap-x-2">
             <div className="p-4 bg-primary text-white"><PlayIcon /> </div> <p className="text-xl font-bold">Intro Video</p>
           </div>
