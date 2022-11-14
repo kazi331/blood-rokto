@@ -48,8 +48,8 @@ const Login = () => {
         <title>Rokto - Login</title>
       </Head>
       {/* <PageHeader title="Login To Your Account" page="Login" /> */}
-      <div className="flex items-center justify-center min-h-screen p-4 md:p-20" >
-        <div className="py-4 min-w-min ring-1 ring-gray-200 shadow-xl  p-4 md:p-8">
+      <div className="flex items-center justify-center min-h-screen p-4 md:p-20 bg-gray-200" >
+        <div className="py-4 min-w-min bg-white shadow-xl  p-4 md:p-8">
           <h2 className='text-3xl font-bold text-center py-4'>Blood Ai Organization</h2>
           <form className={styles.registerForm} onSubmit={handleSubmit}  >
 

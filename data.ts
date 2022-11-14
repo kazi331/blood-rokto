@@ -30,6 +30,7 @@ export const months = [
 ]
 
 export const countries = [
+  { name: 'Bangladesh', code: 'BD' },
   { name: 'Afghanistan', code: 'AF' },
   { name: 'land Islands', code: 'AX' },
   { name: 'Albania', code: 'AL' },
@@ -48,8 +49,7 @@ export const countries = [
   { name: 'Azerbaijan', code: 'AZ' },
   { name: 'Bahamas', code: 'BS' },
   { name: 'Bahrain', code: 'BH' },
-  { name: 'Bangladesh', code: 'BD' },
-  { name: 'Barbados', code: 'BB' },
+    { name: 'Barbados', code: 'BB' },
   { name: 'Belarus', code: 'BY' },
   { name: 'Belgium', code: 'BE' },
   { name: 'Belize', code: 'BZ' },

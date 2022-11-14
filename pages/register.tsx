@@ -52,8 +52,8 @@ const Register = () => {
       </Head>
       <Toaster />
       {/* <PageHeader title="Register As A Blood Donar" page="Register" /> */}
-      <div className="flex items-center justify-center p-4 md:p-10 min-h-screen" >
-        <div className="py-4 min-w-min shadow-lg ring-1 ring-gray-200 p-4 md:p-8">
+      <div className="flex items-center justify-center p-4 md:p-10 min-h-screen bg-gray-200" >
+        <div className="py-4 min-w-min shadow-lg bg-white p-4 md:p-8">
           <h2 className='text-3xl font-bold text-center py-4'>Blood Ai Organization</h2>
           <form className={styles.registerForm} onSubmit={handleSubmit}  >
 

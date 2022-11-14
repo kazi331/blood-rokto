@@ -13,10 +13,9 @@ $xl: "only screen and (min-width:  1280px)";
 $xl2: "only screen and (min-width:  1536px)";
 // => @media (min-width: 1536px) { ... }
 
-.updateForm{
+.updateForm {
   width: 100%;
   padding: 10px 0;
-
 
   // Available check box design
   input[type=checkbox] {
@@ -81,7 +80,8 @@ $xl2: "only screen and (min-width:  1536px)";
           font-size: 80%;
         }
       }
-      select{
+
+      select {
         padding: 6px 10px;
       }
 
