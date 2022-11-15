@@ -23,7 +23,7 @@ const Register = () => {
       is_available: false,
       email: '',
       password: '',
-      
+
     },
     onSubmit: async (values: any) => {
       console.log(values)
@@ -53,7 +53,7 @@ const Register = () => {
   return (
     <div>
       <Head>
-        <title>Rokto - Register</title>
+        <title>Register - Rokto</title>
       </Head>
       <Toaster />
       {/* <PageHeader title="Register As A Blood Donar" page="Register" /> */}

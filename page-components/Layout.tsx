@@ -11,10 +11,7 @@ import NavBar from "./NavBar";
 const queryClient = new QueryClient()
 export function Layout({ children }: { children: React.ReactNode }) {
   return <>
-    <Head>
-      <title>Rokto</title>
-      <link rel="shortcut icon" href="/rokto.png" type="image/x-icon" />
-    </Head>
+    
     <NavBar />
     <main>{children}</main>
     <Footer />

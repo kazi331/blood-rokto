@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { ReactElement } from "react";
 import Actions from "../page-components/home/Actions";
 import Consult from "../page-components/home/Consult";
@@ -6,13 +7,16 @@ import HeroCTA from "../page-components/home/HeroCTA";
 import { Layout } from "../page-components/Layout";
 
 export default function Page() {
-  return (<>
+  return (
     <>
+  <Head>
+      <title>Home</title>
+    </Head>
       <Hero />
       <HeroCTA />
       <Actions />
       <Consult />
-    </>
+
   </>
   )
 }

@@ -8,6 +8,7 @@ import '../styles/Tooltip..css';
 import '../styles/Tooltip..css';
 import '../styles/tailwindGlobal.css';
 import '../styles/dashboard.scss';
+import Head from 'next/head';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -22,6 +23,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page)
 
   return getLayout(<>
+    <Head>
+      <title>Rokto</title>
+      <link rel="shortcut icon" href="/rokto.png" type="image/x-icon" />
+    </Head>
     <QueryClientProvider client={queryClient}>
       <main> <Component {...pageProps} /> </main>
       {/* <ReactQueryDevtools /> */}

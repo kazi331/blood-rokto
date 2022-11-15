@@ -45,7 +45,7 @@ const Login = () => {
     <div>
       <Toaster />
       <Head>
-        <title>Rokto - Login</title>
+        <title>Login - Rokto</title>
       </Head>
       {/* <PageHeader title="Login To Your Account" page="Login" /> */}
       <div className="flex items-center justify-center min-h-screen p-4 md:p-20 bg-gray-200" >
