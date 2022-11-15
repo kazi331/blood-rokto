@@ -1,8 +1,10 @@
-import { Tooltip } from '@mui/material';
+import { FormControlLabel, Switch, Tooltip } from '@mui/material';
+import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
 import { MuiTelInput, MuiTelInputInfo } from 'mui-tel-input';
 import Head from 'next/head';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { bloodGroups, days, months, years } from '../data';
 import { countries } from '../data/countries';
 import { ProfileInputs } from '../DataTypes';
@@ -13,8 +15,21 @@ const Update = () => {
   const [userInfo, setUserInfo] = useState<ProfileInputs | {}>({});
   const [loading, setLoading] = useState<boolean>(false)
   const [phone, setPhone] = useState('')
-  const [phoneInfo, setPhoneInfo] = useState<MuiTelInputInfo | null>(null)
-  const [query, setQuery] = useState('')
+  const [phoneInfo, setPhoneInfo] = useState<MuiTelInputInfo | any>({
+    countryCallingCode: "880",
+    countryCode: "BD",
+    nationalNumber: "1612178331",
+    numberValue: "+8801612178331",
+    reason: "input",
+  })
+
+
+  // hangle phone number input
+  const handlePhone = (newPhone: string, info: MuiTelInputInfo) => {
+    setPhone(newPhone);
+    setPhoneInfo(info)
+  }
+  let user;
   const formik = useFormik<FormikValues>({
     initialValues: {
       country: 'Bangladesh',
@@ -27,22 +42,22 @@ const Update = () => {
       city: '', state: '', street: '',
     },
     onSubmit: async (values) => {
-      console.log(values)
+      // console.log(values)
       // setLoading(true);
-      setUserInfo({
-        fname: values.first_name,
-        lname: values.last_name,
-        bloodgroup: values.blood,
-        phone_number: values.phone,
-        city: values.city,
-        state: values.state,
-        country: values.country,
+      user = {
+        first_name: values.first_name,
+        last_name: values.last_name,
+        blood: values.blood,
+        phone: phone,
+        phoneInfo: phoneInfo,
+        address: { city: values.city, street: values.street, state: values.state, country: phoneInfo?.countryCode || 'BD' },
         dob: values.dobY + "-" + values.dobM + "-" + values.dobD,
-        lastdonatedate: values.lastY + "-" + values.lastM + "-" + values.lastD,
-      })
+        last_donate: values.lastY + "-" + values.lastM + "-" + values.lastD,
+        is_available: values.is_available
+      }
 
       // try {
-      //   const res = await axios.post(`https://apiblood.herokuapp.com/api/blooddonor`, userInfo)
+      //   const res = await axios.post(`https://apiblood.herokuapp.com/api/blooddonor`, user)
       //   console.log(res.data.status)
       //   if (res.data.status === 'success') toast.success('Doner Registered!')
       //   setLoading(false)
@@ -50,16 +65,11 @@ const Update = () => {
       //   console.log(err)
       //   setLoading(false)
       // }
-    }
+    },
+    validateOnChange: true,
   });
   const { values, handleChange, handleBlur, handleReset, handleSubmit } = formik;
-
-  // hangle phone number input
-  const handlePhone = (newPhone: string, info: MuiTelInputInfo) => {
-    setPhone(newPhone);
-    setPhoneInfo(info)
-  }
-
+  // console.log(userInfo)
   return (
     <div className='bg-gray-200'>
       <Head>
@@ -79,10 +89,10 @@ const Update = () => {
                 <label className={styles.fieldLabel} htmlFor="first_name">Full Name</label>
                 <div className={styles.fieldInput} >
                   <div>
-                    <input onChange={handleChange} value={values.first_name} type="text" id="first_name" placeholder='First name' />
+                    <input onChange={handleChange} value={values.first_name} type="text" id="first_name" placeholder='First name' required />
                   </div>
                   <div>
-                    <input onChange={handleChange} value={values.last_name} type="text" id="last_name" placeholder='Last name' />
+                    <input onChange={handleChange} value={values.last_name} type="text" id="last_name" placeholder='Last name' required />
                   </div>
                 </div>
               </div>
@@ -93,14 +103,15 @@ const Update = () => {
                 <label className={styles.fieldLabel} htmlFor="dobM">Date of birth</label>
                 <div className={styles.fieldInput}>
                   <select onChange={handleChange} value={values.dobD} className={styles.day} name="dobD" id="dobD" placeholder='day' required>
-
+                    <option value="" disabled >Day</option>
                     {days.map((day) => <option key={day} value={day}>{day}</option>)}
                   </select>
                   <select onChange={handleChange} value={values.dobM} className={styles.month} name="dobM" id="dobM" placeholder='month' required>
-
+                    <option value="" disabled >Month</option>
                     {months.map((month) => <option key={month.value} value={month.value}>{month.name}</option>)}
                   </select>
                   <select onChange={handleChange} value={values.dobY} className={styles.year} name="dobY" id="dobY" placeholder='year' required>
+                    <option value="" disabled >Year</option>
                     {years.map((year) => <option key={year} value={year}>{year}</option>)}
                   </select>
                 </div>
@@ -126,14 +137,17 @@ const Update = () => {
                 <div className={styles.fieldInput}>
 
                   <select onChange={handleChange} value={values.lastD} className={styles.day} title="Select Day" name="lastD" id="lastD" >
+                    <option value="" disabled >Day</option>
                     {days.map((day) => <option key={day} value={day}>{day}</option>)}
                   </select>
 
                   <select onChange={handleChange} value={values.lastM} className={styles.month} title="Select Month" name="lastM" id="lastM" >
+                    <option value="" disabled >Month</option>
                     {months.map((month) => <option key={month.value} value={month.value}> {month.name} </option>)}
                   </select>
 
                   <select onChange={handleChange} value={values.lastY} className={styles.year} title="Select Year" name="lastY" id="lastY" >
+                    <option value="" disabled >Year</option>
                     {years.map((year) => <option key={year} value={year}>{year}</option>)}
                   </select>
                 </div>
@@ -147,6 +161,7 @@ const Update = () => {
                 <div className={styles.fieldInput}>
                   {/* <input onChange={handleChange} value={values.phone} type="tel" maxLength={11} minLength={11} pattern="[0-9]{11}" id="phone" name="phone" placeholder='phone number (11 digits)' /> */}
                   <MuiTelInput
+                    required
                     className='w-full border rounded-none'
                     placeholder='+880 01612178331'
                     value={phone}
@@ -164,26 +179,25 @@ const Update = () => {
                 <div className={styles.fieldInput}>
                   <div className="flex flex-col w-full gap-y-2">
                     <input onChange={handleChange} value={values.street} type="text" id="street" placeholder='Street' />
-                    <input onChange={handleChange} value={values.city} type="text" id="city" placeholder='City' />
+                    <input onChange={handleChange} value={values.city} type="text" id="city" placeholder='City' required />
                     <input onChange={handleChange} value={values.state} type="text" id="state" placeholder='State/Province' />
-                    <select onChange={handleChange} value={values.country} name="country" id="country" title="Country" required>
+                    {/* <select onChange={handleChange} value={values.country} name="country" id="country" title="Country" required>
                       {countries.map((country) => <option key={country.code} value={country.code}>{country.name}</option>)}
-                    </select>
+                    </select> */}
                   </div>
                 </div>
               </div>
 
               {/* Available button */}
               <div className="flex items-center justify-between">
-                <span>
-                  <Tooltip title="Are you physically ready to donate blood?">
-                    <label htmlFor='is_available' className='select-none cursor-pointer'>Available</label>
-                  </Tooltip>
-                </span>
-                <span>
-                  <input onChange={handleChange} value={values.is_available} type="checkbox" name="is_available" id="is_available" />
-                  <label className={styles.switchLable} htmlFor="is_available"></label>
-                </span>
+                <FormControlLabel
+                  value={values.is_available}
+                  onChange={handleChange}
+                  id="is_available"
+                  name="is_available"
+                  className='flex justify-between w-full  m-0' labelPlacement='start' control={<Switch />}
+                  label={<Tooltip title="Are you physically ready to donate blood?"><span className='select-none'>Available</span></Tooltip>}
+                />
               </div>
             </div>
 

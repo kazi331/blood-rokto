@@ -3,7 +3,9 @@ import { FormikValues, useFormik } from 'formik';
 import { ReactElement, useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
-import { bloodGroups, countries, days, months, years } from '../data';
+import { bloodGroups, days, months, years } from '../data';
+import { countries } from '../data/countries';
+
 import { ProfileInputs } from '../DataTypes';
 import { Spinner } from '../page-components/Icons';
 import { Layout } from '../page-components/Layout';
