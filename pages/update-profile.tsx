@@ -17,8 +17,7 @@ const UpdateProfile = () => {
     initialValues: {
       country: 'Bangladesh',
     },
-    onSubmit: async () => {
-      setLoading(true)
+    onSubmit: async (values) => {
       setLoading(true);
       setUserInfo({
         fname: values.first_name,

@@ -5,7 +5,9 @@ import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import '../styles/globals.css';
 import '../styles/Tooltip..css';
+import '../styles/Tooltip..css';
 import '../styles/tailwindGlobal.css';
+import '../styles/dashboard.scss';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

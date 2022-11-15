@@ -1,4 +1,6 @@
-import { Switch } from '@headlessui/react';
+import styled from '@emotion/styled';
+import { alpha, FormControlLabel, Switch } from '@mui/material';
+import { pink } from '@mui/material/colors';
 import axios from 'axios';
 import { FormikValues, useFormik } from 'formik';
 import Head from 'next/head';
@@ -7,38 +9,41 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { EyeClose, EyeOpen, Spinner } from '../page-components/Icons';
-import Tooltip from '../page-components/utils/Tooltip';
 import styles from '../styles/Register.module.scss';
-
 
 const Register = () => {
   const [showPass, setShowPass] = useState<boolean>(false);
   const [loading, setLoading] = useState(false)
-  const [checked, setChecked] = useState(false)
   const router = useRouter();
 
   const formik = useFormik<FormikValues>({
     initialValues: {
       first_name: '',
+      last_name: '',
+      is_available: false,
+      email: '',
+      password: '',
+      
     },
     onSubmit: async (values: any) => {
-      setLoading(true)
-      await axios.post('https://apiblood.herokuapp.com/api/account/register', { ...values, password2: values.password })
-        .then(res => {
-          setLoading(false)
-          toast.success('Account Created Successfully!', { position: 'top-right' });
-          setTimeout(() => {
-            router.push('/login')
-          }, 1000);
-        })
-        .catch(err => {
-          setLoading(false)
-          toast.error('Something went wrong!!', { position: 'top-right' })
-          console.log(err)
-          if (err.response.data.status == 'failed') {
-            toast.error('User Already Exists!', { position: 'top-right' })
-          }
-        })
+      console.log(values)
+      // setLoading(true)
+      // await axios.post('https://apiblood.herokuapp.com/api/account/register', { ...values, password2: values.password })
+      //   .then(res => {
+      //     setLoading(false)
+      //     toast.success('Account Created Successfully!', { position: 'top-right' });
+      //     setTimeout(() => {
+      //       router.push('/login')
+      //     }, 1000);
+      //   })
+      //   .catch(err => {
+      //     setLoading(false)
+      //     toast.error('Something went wrong!!', { position: 'top-right' })
+      //     console.log(err)
+      //     if (err.response.data.status == 'failed') {
+      //       toast.error('User Already Exists!', { position: 'top-right' })
+      //     }
+      //   })
     }
   });
 
@@ -93,27 +98,23 @@ const Register = () => {
               </div>
 
               {/* Available button */}
-              <div className="flex items-center justify-between">
-
-                <Switch.Group>
-                  <Switch.Label className="mr-4 select-none cursor-pointer">
-                    <Tooltip direction='right' content={<p className='p-2 max-w-xs'>Are you physically ready to <br /> donate blood now? You can always <br /> change this from your profile settings</p>}>
-                      Available</Tooltip>
-                  </Switch.Label>
-                  <Switch
-                    // checked={checked}
-                    onChange={setChecked}
-                    className={`${checked ? 'bg-primary' : 'bg-gray-200'
-                      } relative inline-flex h-6 w-11 items-center rounded-full outline-none`}
-                  >
-                    <span className="sr-only">Enable notifications</span>
-                    <span
-                      className={`${checked ? 'translate-x-6' : 'translate-x-1'
-                        } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+              <div className={styles.field} >
+                <FormControlLabel
+                  className='flex justify-between w-full m-0'
+                  // value={values.is_available}
+                  name="is_available"
+                  onChange={handleChange}
+                  control={
+                    <Switch color="error"
+                      name='is_available'
+                      value={values.is_available}
                     />
-                  </Switch>
-                </Switch.Group>
+                  }
+                  label="Available?"
+                  labelPlacement="start"
+                />
               </div>
+
 
 
 
@@ -121,9 +122,9 @@ const Register = () => {
             <button disabled={loading} className=' w-full flex items-center justify-center bg-primary select-none py-2 text-white font-bold mt-8' type="submit"> {loading && <Spinner />} Create Account</button>
           </form>
           <div className="flex justify-between">
-          <p className='text-xs text-left select-none'>Back to<Link className='text-primary' href="/"> Home</Link></p>
-          <p className='text-xs text-right select-none'>Have an account? <Link className='text-primary' href="/login">Login</Link></p>
-        </div >
+            <p className='text-xs text-left select-none'>Back to<Link className='text-primary' href="/"> Home</Link></p>
+            <p className='text-xs text-right select-none'>Have an account? <Link className='text-primary' href="/login">Login</Link></p>
+          </div >
         </div >
       </div >
     </div >

@@ -25,11 +25,13 @@ const Doners = () => {
   }
 
   return (
-    <div className="text-gray-300 bg-dark1 body-font w-full overflow-auto " style={{}}>
-      <div className="container px-5 py-24 mx-auto">
+    <div className="text-gray-300 bg-dark1 body-font w-full overflow-auto" style={{}}>
+      <div className="container px-5 py-10 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-white">Doner List</h1>
-          <p className=" max-w-lg lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore sunt perferendis, ipsam earum eos nulla corporis illum quidem nemo at.</p>
+          <p className=" max-w-lg lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore sunt perferendis, ipsam earum eos nulla .</p>
+          <p className='py-96'>lroem</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse odit, sapiente reiciendis velit culpa unde veniam modi fugit ex? Odit, ipsa iste fugiat ad amet sunt fuga ipsam omnis nesciunt. Earum accusamus eum possimus recusandae quidem, perferendis, ullam nihil ratione aliquam cupiditate veniam saepe et nam rerum. Corrupti ut explicabo enim laboriosam praesentium veritatis quis assumenda expedita fugiat ab?</p>
         </div>
         <div className="xl:w-5/6 w-full mx-auto overflow-auto rounded">
           <table className="table-auto w-full text-left whitespace-no-wrap">
@@ -73,6 +75,7 @@ const Doners = () => {
             </tbody>
           </table>
         </div>
+        <p className='py-64'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id optio quidem veritatis architecto distinctio numquam amet voluptates, obcaecati ipsam quas adipisci rem repellendus necessitatibus. Voluptatem vel possimus dignissimos sapiente ullam! Blanditiis deleniti harum tenetur deserunt recusandae aspernatur beatae expedita itaque.</p>
       </div>
     </div>
   )

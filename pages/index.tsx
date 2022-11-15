@@ -1,10 +1,9 @@
+import { ReactElement } from "react";
 import Actions from "../page-components/home/Actions";
+import Consult from "../page-components/home/Consult";
 import Hero from "../page-components/home/Hero";
 import HeroCTA from "../page-components/home/HeroCTA";
-import Consult from "../page-components/home/Consult";
 import { Layout } from "../page-components/Layout";
-import Nested from "../page-components/Nested";
-import { ReactElement } from "react";
 
 export default function Page() {
   return (<>

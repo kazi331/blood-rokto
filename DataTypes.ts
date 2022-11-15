@@ -26,3 +26,10 @@ export type TooltipType = {
   delay?: number,
   className?: string
 }
+
+export interface CountryType {
+  code: string;
+  label: string;
+  phone: string;
+  suggested?: boolean;
+}

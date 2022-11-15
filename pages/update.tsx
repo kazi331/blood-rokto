@@ -1,10 +1,10 @@
-import axios from 'axios';
+import { Tooltip } from '@mui/material';
 import { FormikValues, useFormik } from 'formik';
+import { MuiTelInput, MuiTelInputInfo } from 'mui-tel-input';
 import Head from 'next/head';
 import { useState } from 'react';
-import "react-datepicker/dist/react-datepicker.css";
-import toast from 'react-hot-toast';
-import { bloodGroups, countries, days, months, years } from '../data';
+import { bloodGroups, days, months, years } from '../data';
+import { countries } from '../data/countries';
 import { ProfileInputs } from '../DataTypes';
 import { Spinner } from '../page-components/Icons';
 import styles from '../styles/Update.module.scss';
@@ -12,14 +12,23 @@ import styles from '../styles/Update.module.scss';
 const Update = () => {
   const [userInfo, setUserInfo] = useState<ProfileInputs | {}>({});
   const [loading, setLoading] = useState<boolean>(false)
+  const [phone, setPhone] = useState('')
+  const [phoneInfo, setPhoneInfo] = useState<MuiTelInputInfo | null>(null)
   const [query, setQuery] = useState('')
   const formik = useFormik<FormikValues>({
     initialValues: {
       country: 'Bangladesh',
+      phone: '',
+      first_name: '', last_name: '',
+      blood: '',
+      is_available: false,
+      dobD: '', dobM: '', dobY: '',
+      lastD: '', lastM: '', lastY: '',
+      city: '', state: '', street: '',
     },
-    onSubmit: async () => {
-      setLoading(true)
-      setLoading(true);
+    onSubmit: async (values) => {
+      console.log(values)
+      // setLoading(true);
       setUserInfo({
         fname: values.first_name,
         lname: values.last_name,
@@ -31,20 +40,25 @@ const Update = () => {
         dob: values.dobY + "-" + values.dobM + "-" + values.dobD,
         lastdonatedate: values.lastY + "-" + values.lastM + "-" + values.lastD,
       })
-      console.log(userInfo)
-      try {
-        const res = await axios.post(`https://apiblood.herokuapp.com/api/blooddonor`, userInfo)
-        console.log(res.data.status)
-        if (res.data.status === 'success') toast.success('Doner Registered!')
-        setLoading(false)
-      } catch (err) {
-        console.log(err)
-        setLoading(false)
-      }
+
+      // try {
+      //   const res = await axios.post(`https://apiblood.herokuapp.com/api/blooddonor`, userInfo)
+      //   console.log(res.data.status)
+      //   if (res.data.status === 'success') toast.success('Doner Registered!')
+      //   setLoading(false)
+      // } catch (err) {
+      //   console.log(err)
+      //   setLoading(false)
+      // }
     }
   });
   const { values, handleChange, handleBlur, handleReset, handleSubmit } = formik;
 
+  // hangle phone number input
+  const handlePhone = (newPhone: string, info: MuiTelInputInfo) => {
+    setPhone(newPhone);
+    setPhoneInfo(info)
+  }
 
   return (
     <div className='bg-gray-200'>
@@ -99,7 +113,7 @@ const Update = () => {
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="blood">Blood Group</label>
                 <div className={styles.fieldInput}>
-                  <select onChange={handleChange} value={values.blood} name="blood" id="blood" placeholder='day' required>
+                  <select onChange={handleChange} value={values.blood} name="blood" id="blood" placeholder='Blood' required>
                     <option value="">Select Blood Group</option>
                     {bloodGroups.map((group) => <option key={group.value} value={group.value}> {group.name}</option>)}
                   </select>
@@ -131,7 +145,16 @@ const Update = () => {
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="phone">Phone Number</label>
                 <div className={styles.fieldInput}>
-                  <input onChange={handleChange} value={values.phone} type="tel" maxLength={11} minLength={11} pattern="[0-9]{11}" id="phone" name="phone" placeholder='phone number (11 digits)' />
+                  {/* <input onChange={handleChange} value={values.phone} type="tel" maxLength={11} minLength={11} pattern="[0-9]{11}" id="phone" name="phone" placeholder='phone number (11 digits)' /> */}
+                  <MuiTelInput
+                    className='w-full border rounded-none'
+                    placeholder='+880 01612178331'
+                    value={phone}
+                    onChange={handlePhone}
+                    defaultCountry="BD"
+                  // helperText={fieldState.invalid ? "Tel is invalid" : ""}
+                  />
+
                 </div>
               </div>
 
@@ -153,12 +176,13 @@ const Update = () => {
               {/* Available button */}
               <div className="flex items-center justify-between">
                 <span>
-                  <label htmlFor='available' className='select-none cursor-pointer'>Available</label>
-                  <span className='text-xs'> ( Are you available now to donate blood? )</span>
+                  <Tooltip title="Are you physically ready to donate blood?">
+                    <label htmlFor='is_available' className='select-none cursor-pointer'>Available</label>
+                  </Tooltip>
                 </span>
                 <span>
-                  <input onChange={handleChange} value={values.available} type="checkbox" name="is_available" id="available" />
-                  <label className={styles.switchLable} htmlFor="available"></label>
+                  <input onChange={handleChange} value={values.is_available} type="checkbox" name="is_available" id="is_available" />
+                  <label className={styles.switchLable} htmlFor="is_available"></label>
                 </span>
               </div>
             </div>
