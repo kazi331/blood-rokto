@@ -25,11 +25,6 @@ const Menuitems = [
     href: "/admin/rating",
   },
   {
-    title: "Images",
-    icon: "image",
-    href: "/admin/image",
-  },
-  {
     title: "Pagination",
     icon: "user",
     href: "/admin/pagination",

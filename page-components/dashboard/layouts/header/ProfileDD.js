@@ -50,11 +50,9 @@ const ProfileDD = () => {
             <Typography
               variant="h5"
               fontWeight="700"
-              sx={{
-                ml: 1,
-              }}
+              sx={{ml: 1,}}
             >
-              Julia
+              Shishir,
             </Typography>
             <FeatherIcon icon="chevron-down" width="20" height="20" />
           </Box>
