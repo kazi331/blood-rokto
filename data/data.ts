@@ -1,4 +1,4 @@
-import avatar from './public/avatars/avatar-female.png';
+import avatar from '../public/avatars/avatar-female.png';
 
 const start: number = 1950;
 const end: number = 2023;

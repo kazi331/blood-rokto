@@ -68,10 +68,10 @@ $xl2: "only screen and (min-width:  1536px)";
         background-color: #E9E9ED;
         background-color: #fff;
         border: 1px solid rgba(128, 128, 128, 0.514);
-
+        border-radius: 0px !important;
         &:focus {
           border-color: rgb(27, 110, 219);
-          ;
+
           outline: none;
           background: transparent;
         }
@@ -79,6 +79,10 @@ $xl2: "only screen and (min-width:  1536px)";
         &::placeholder {
           font-size: 80%;
         }
+      }
+
+      select{
+        padding: 3px 10px !important;
       }
 
       select {
@@ -110,6 +114,16 @@ $xl2: "only screen and (min-width:  1536px)";
         top: 100%;
       }
 
+    }
+
+    }
+
+  .phoneNumber {
+    border-radius: 0;
+    width: 100%;
+
+    div {
+      border-radius: 0;
     }
   }
 

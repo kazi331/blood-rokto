@@ -9,7 +9,7 @@ const pages = [
   { slug: '/campaign', label: 'Campaign' },
   { slug: '/login', label: 'Login' },
   { slug: '/register', label: 'Registration' },
-  { slug: '/dashboard', label: 'Dashboard' },
+  { slug: '/admin', label: 'Dashboard' },
 ]
 
 
@@ -17,12 +17,12 @@ const NavBar = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
   return (
     <nav className='main-nav '>
-      <div className="container mx-auto flex flex-wrap justify-between items-center px-2 md:px-4 font-medium text-lg">
+      <div className="container mx-auto flex flex-wrap justify-between items-center px-2 md:px-4 font-medium text-lg   ">
         <Link href="/" className=' text-3xl font-bold text-white bg-primary p-4'>Blood Ai</Link>
 
         {/* Desktop Menu  */}
         <div className="hidden lg:flex gap-x-4">
-          {pages.map((page, i) => <Link key={i} href={page.slug} className='hover:text-primary font-thin transition'>{page.label}</Link>)}
+          {pages.map((page, i) => <Link key={i} href={page.slug} className='hover:text-primary  font-thin transition'>{page.label}</Link>)}
         </div>
 
         {/* mobile menu  */}

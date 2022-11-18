@@ -5,14 +5,13 @@ import { MuiTelInput, MuiTelInputInfo } from 'mui-tel-input';
 import Head from 'next/head';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { bloodGroups, days, months, years } from '../data';
+import { bloodGroups, days, months, years } from '../data/data';
 import { countries } from '../data/countries';
 import { ProfileInputs } from '../DataTypes';
 import { Spinner } from '../page-components/Icons';
 import styles from '../styles/Update.module.scss';
 
 const Update = () => {
-  const [userInfo, setUserInfo] = useState<ProfileInputs | {}>({});
   const [loading, setLoading] = useState<boolean>(false)
   const [phone, setPhone] = useState('')
   const [phoneInfo, setPhoneInfo] = useState<MuiTelInputInfo | any>({
@@ -23,12 +22,6 @@ const Update = () => {
     reason: "input",
   })
 
-
-  // hangle phone number input
-  const handlePhone = (newPhone: string, info: MuiTelInputInfo) => {
-    setPhone(newPhone);
-    setPhoneInfo(info)
-  }
   let user;
   const formik = useFormik<FormikValues>({
     initialValues: {
@@ -42,19 +35,20 @@ const Update = () => {
       city: '', state: '', street: '',
     },
     onSubmit: async (values) => {
-      // console.log(values)
       // setLoading(true);
       user = {
         first_name: values.first_name,
         last_name: values.last_name,
         blood: values.blood,
-        phone: phone,
-        phoneInfo: phoneInfo,
+        phone: [phone, phone.replaceAll(' ', '')],
+        phoneInfo,
         address: { city: values.city, street: values.street, state: values.state, country: phoneInfo?.countryCode || 'BD' },
         dob: values.dobY + "-" + values.dobM + "-" + values.dobD,
         last_donate: values.lastY + "-" + values.lastM + "-" + values.lastD,
         is_available: values.is_available
       }
+      console.log(values)
+      console.log(user)
 
       // try {
       //   const res = await axios.post(`https://apiblood.herokuapp.com/api/blooddonor`, user)
@@ -69,7 +63,12 @@ const Update = () => {
     validateOnChange: true,
   });
   const { values, handleChange, handleBlur, handleReset, handleSubmit } = formik;
-  // console.log(userInfo)
+
+  const handlePhone = (newphone: string, newInfo: {}) => {
+    setPhone(newphone);
+    setPhoneInfo(newInfo);
+  }
+
   return (
     <div className='bg-gray-200'>
       <Head>
@@ -155,6 +154,7 @@ const Update = () => {
                   <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" min="1970-01-01" max="2023-12-31" />
                 </div> */}
               </div>
+
               {/* Phone Number field  */}
               <div className={styles.field}>
                 <label className={styles.fieldLabel} htmlFor="phone">Phone Number</label>
@@ -162,14 +162,15 @@ const Update = () => {
                   {/* <input onChange={handleChange} value={values.phone} type="tel" maxLength={11} minLength={11} pattern="[0-9]{11}" id="phone" name="phone" placeholder='phone number (11 digits)' /> */}
                   <MuiTelInput
                     required
-                    className='w-full border rounded-none'
+                    className={styles.phoneNumber}
+                    style={{ borderRadius: '0' }}
                     placeholder='+880 01612178331'
                     value={phone}
                     onChange={handlePhone}
                     defaultCountry="BD"
-                  // helperText={fieldState.invalid ? "Tel is invalid" : ""}
+                    label="Phone" id="phone" name="phone"
+                    aria-label='phone'
                   />
-
                 </div>
               </div>
 
@@ -189,19 +190,21 @@ const Update = () => {
               </div>
 
               {/* Available button */}
-              <div className="flex items-center justify-between">
-                <FormControlLabel
-                  value={values.is_available}
-                  onChange={handleChange}
-                  id="is_available"
-                  name="is_available"
-                  className='flex justify-between w-full  m-0' labelPlacement='start' control={<Switch />}
-                  label={<Tooltip title="Are you physically ready to donate blood?"><span className='select-none'>Available</span></Tooltip>}
-                />
+              <div className={styles.field}>
+                <div className={styles.fieldInput}>
+                  <FormControlLabel
+                    value={values.is_available}
+                    onChange={handleChange}
+                    id="is_available"
+                    name="is_available"
+                    className="flex itemc justify-between w-full m-0 available" labelPlacement='start' control={<Switch />}
+                    label={<Tooltip title="Are you physically ready to donate blood?"><span className='select-none'>Available</span></Tooltip>}
+                  />
+                </div>
               </div>
             </div>
 
-            <button disabled={loading} className='w-full bg-primary py-2 text-white font-bold mt-8' type="submit"> {loading && <Spinner />} Update Profile</button>
+            <button disabled={loading} className={` ${loading && 'bg-opacity-50'} w-full bg-primary py-2 text-white font-bold mt-8`} type="submit"> {loading && <Spinner />} Update Profile</button>
           </form>
 
         </div >

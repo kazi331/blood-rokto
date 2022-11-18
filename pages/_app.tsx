@@ -1,14 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import { ReactElement, ReactNode } from 'react';
-import '../styles/globals.css';
-import '../styles/Tooltip..css';
-import '../styles/Tooltip..css';
-import '../styles/tailwindGlobal.css';
-import '../styles/dashboard.scss';
 import Head from 'next/head';
+import { ReactElement, ReactNode } from 'react';
+import '../styles/dashboard.scss';
+import '../styles/globals.css';
+import '../styles/tailwindGlobal.css';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

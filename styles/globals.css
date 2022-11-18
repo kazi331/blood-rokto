@@ -39,6 +39,25 @@ a {
   box-sizing: border-box;
 }
 
+
+/* door effect  */
+/* button {
+  transition: 0.8s;
+}
+button:hover{
+  background-color: transparent;
+  box-shadow: inset -5em 0 0 0 #EA062B, inset 5em 0 0 0 #EA062B;
+} */
+
+/* Available button css  */
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+  background-color: #ea062b;
+}
+
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+  color: #ea062b;
+}
+
 /* input:hover {
   border-color: #EA062B !important;
 }
