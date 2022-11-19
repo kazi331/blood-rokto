@@ -1,16 +1,17 @@
-import { Box, Container, experimentalStyled, useMediaQuery } from "@mui/material";
-import React from "react";
+import styled from "@emotion/styled";
+import { Box, Container, useMediaQuery } from "@mui/material";
+import { useState } from "react";
 import Header from "./header/Header";
 import Sidebar from "./sidebar/Sidebar";
 
-const MainWrapper = experimentalStyled("div")(() => ({
+const MainWrapper = styled("div")(() => ({
   display: "flex",
   minHeight: "100vh",
   overflow: "hidden",
   width: "100%",
 }));
 
-const PageWrapper = experimentalStyled("div")(({ theme }) => ({
+const PageWrapper = styled("div")(({ theme }) => ({
   display: "flex",
   flex: "1 1 auto",
   overflow: "hidden",
@@ -25,8 +26,8 @@ const PageWrapper = experimentalStyled("div")(({ theme }) => ({
 }));
 
 const DashboardLayout = ({ children }) => {
-  const [isSidebarOpen, setSidebarOpen] = React.useState(true);
-  const [isMobileSidebarOpen, setMobileSidebarOpen] = React.useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   return (
     <MainWrapper>
@@ -51,7 +52,6 @@ const DashboardLayout = ({ children }) => {
           }}
         >
           <Box sx={{ minHeight: "calc(100vh - 170px)" }}>{children}</Box>
-          {/* <Footer /> */}
         </Container>
       </PageWrapper>
     </MainWrapper>

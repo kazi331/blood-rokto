@@ -1,13 +1,10 @@
-import styled from '@emotion/styled';
-import { alpha, FormControlLabel, Switch } from '@mui/material';
-import { pink } from '@mui/material/colors';
-import axios from 'axios';
+import { FormControlLabel, Switch } from '@mui/material';
 import { FormikValues, useFormik } from 'formik';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { EyeClose, EyeOpen, Spinner } from '../page-components/Icons';
 import styles from '../styles/Register.module.scss';
 

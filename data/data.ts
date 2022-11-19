@@ -1,3 +1,4 @@
+import { DonerType } from '../DataTypes';
 import avatar from '../public/avatars/avatar-female.png';
 
 const start: number = 1950;
@@ -6,7 +7,7 @@ const length = end - start + 1;
 export const years = Array(length).fill(start).map((x, y) => x + y);
 export const days = Array.from({ length: 31 }, (x, i) => i + 1);
 
-export const bloodGroups = [
+export const bloodGroups: { value: string, name: string }[] = [
   { value: 'O+', name: 'O Positive (O+)' },
   { value: 'O-', name: 'O Negative (O-)' },
   { value: 'A+', name: 'A Positive (A+)' },
@@ -14,9 +15,9 @@ export const bloodGroups = [
   { value: 'B+', name: 'B Positive (B+)' },
   { value: 'B-', name: 'B Negative (B-)' },
   { value: 'AB+', name: 'AB Positive  (AB+)' },
-  { value: 'AB-', name: 'AB Negative  (AB-)', }
+  { value: 'AB-', name: 'AB Negative  (AB-)', },
 ]
-export const months = [
+export const months: { value: string, name: string }[] = [
   { value: "1", name: "January", },
   { value: "2", name: "February", },
   { value: "3", name: "March", },
@@ -32,78 +33,19 @@ export const months = [
 ]
 
 
-export const doners = [
+export const doners: DonerType[] = [
   {
-    id: 1, name: 'Sayem Khan',
-    phone: '01612178331',
-    is_available: true,
-    city: 'cumilla',
-    avatar: avatar,
-    joined: 'dec 2, 2022',
-    is_admin: false,
-    last_donate: 'oct 2, 2022',
+    id: 1, first_name: 'Sayem', last_name: 'Khan', phone: '01612178331', is_available: true,
+    city: 'cumilla', avatar: 'no image', joined: 'dec 2, 2022', is_admin: false, last_donate: 'oct 2, 2022',
   },
   {
-    id: 2, name: 'Sayem Khan',
-    phone: '01612178331',
-    is_available: false,
-    city: 'cumilla',
-    avatar: avatar,
-    joined: 'dec 2, 2022',
-    is_admin: true,
-    last_donate: 'oct 2, 2022',
+    id: 2, first_name: 'Sayem', last_name: 'Khan', phone: '01612178331', is_available: false,
+    city: 'cumilla', avatar: avatar.src, joined: 'dec 2, 2022', is_admin: true, last_donate: 'oct 2, 2022',
   },
   {
-    id: 3, name: 'Sayem Khan',
-    phone: '01612178331',
-    is_available: false,
-    city: 'cumilla',
-    avatar: avatar,
-    joined: 'dec 2, 2022',
-    is_admin: false,
-    last_donate: 'oct 2, 2022',
+    id: 3, first_name: 'Sayem', last_name: 'Khan', phone: '01612178331', is_available: false,
+    city: 'cumilla', avatar: avatar.src, joined: 'dec 2, 2022', is_admin: false, last_donate: 'oct 2, 2022',
   },
-  {
-    id: 4, name: 'Sayem Khan',
-    phone: '01612178331',
-    is_available: true,
-    city: 'cumilla',
-    avatar: avatar,
-    joined: 'dec 2, 2022',
-    is_admin: false,
-    last_donate: 'oct 2, 2022',
-  },
-  {
-    id: 5, name: 'Sayem Khan',
-    phone: '01612178331',
-    is_available: true,
-    city: 'cumilla',
-    avatar: avatar,
-    joined: 'dec 2, 2022',
-    is_admin: false,
-    last_donate: 'oct 2, 2022',
-  },
-  {
-    id: 6, name: 'Sayem Khan',
-    phone: '01612178331',
-    is_available: false,
-    city: 'cumilla',
-    avatar: avatar,
-    joined: 'dec 2, 2022',
-    is_admin: true,
-    last_donate: 'oct 2, 2022',
-  },
-  {
-    id: 7, name: 'Sayem Khan',
-    phone: '01612178331',
-    is_available: true,
-    city: 'cumilla',
-    avatar: avatar,
-    joined: 'dec 2, 2022',
-    is_admin: false,
-    last_donate: 'oct 2, 2022',
-  },
-
 ]
 
 

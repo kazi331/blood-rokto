@@ -1,12 +1,14 @@
 import React, { ReactElement } from 'react';
 export type DonerType = {
   id: number;
-  fname: string; lname: string;
-  phone_number: string;
-  date_joined: string;
+  first_name: string; last_name: string;
+  phone: string;
+  joined: string;
   city: string;
   is_available: boolean;
-  avatar: string;
+  is_admin: boolean;
+  last_donate:string,
+  avatar: string | {};
 }
 export type PrimaryBtnProps = {
   bg?: string,

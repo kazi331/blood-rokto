@@ -4,35 +4,21 @@ const Menuitems = [
     icon: "home",
     href: "/admin/",
   },
+
+  // {
+  //   title: "Ratings",
+  //   icon: "star",
+  //   href: "/admin/rating",
+  // },
+  // {
+  //   title: "Pagination",
+  //   icon: "user",
+  //   href: "/admin/pagination",
+  // },
   {
-    title: "Buttons",
-    icon: "disc",
-    href: "/admin/buttons",
-  },
-  {
-    title: "Forms",
-    icon: "layout",
-    href: "/admin/forms",
-  },
-  {
-    title: "Alerts",
-    icon: "info",
-    href: "/admin/alerts",
-  },
-  {
-    title: "Ratings",
-    icon: "star",
-    href: "/admin/rating",
-  },
-  {
-    title: "Pagination",
-    icon: "user",
-    href: "/admin/pagination",
-  },
-  {
-    title: "Tables",
-    icon: "grid",
-    href: "/admin/table",
+    title: "Doners",
+    icon: "users",
+    href: "/admin/doners",
   },
 ];
 

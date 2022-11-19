@@ -1,12 +1,10 @@
-import React from "react";
-import NextLink from "next/link";
-import PropTypes from "prop-types";
-import { Box, Drawer, useMediaQuery, List, Link, Button, Typography, ListItem, Collapse, ListItemIcon, ListItemText, } from "@mui/material";
+import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, useMediaQuery } from "@mui/material";
 import FeatherIcon from "feather-icons-react";
-import LogoIcon from "../logo/LogoIcon";
-import Menuitems from "./MenuItems";
-import Buynow from "./Buynow";
+import { default as Link } from "next/link";
 import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+import React from "react";
+import Menuitems from "./MenuItems";
 
 const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
   const [open, setOpen] = React.useState(true);
@@ -20,17 +18,16 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
       setOpen(index);
     }
   };
-  let curl = useRouter();
-  const location = curl.pathname;
+  const location = useRouter().pathname;
 
   const SidebarContent = (
     <Box p={2} height="100%">
-      <LogoIcon />
+      <Link href="/"><h1 className="text-primary font-bold text-3xl text-center p-2">Blood Ai </h1></Link>
       <Box mt={2}>
         <List>
           {Menuitems.map((item, index) => (
             <List component="li" disablePadding key={item.title}>
-              <NextLink href={item.href}>
+              <Link href={item.href}>
                 <ListItem
                   onClick={() => handleClick(index)}
                   button
@@ -55,7 +52,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
                     {item.title}
                   </ListItemText>
                 </ListItem>
-              </NextLink>
+              </Link>
             </List>
           ))}
         </List>

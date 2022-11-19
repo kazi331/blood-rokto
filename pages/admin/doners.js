@@ -1,18 +1,16 @@
-import { CssBaseline, Grid, ThemeProvider } from "@mui/material";
+import { Grid, ThemeProvider } from "@mui/material";
+import DonerList from '../../page-components/dashboard/DonerList';
 import DashboardLayout from "../../page-components/dashboard/layouts/DashboardLayout";
 import theme from "../../page-components/dashboard/src/theme/theme";
-import ProductPerfomance from '../../page-components/dashboard/ProductPerfomance'
 
-const Tables = () => {
+const Doners = () => {
   return (
     <ThemeProvider theme={theme}>
-
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <DashboardLayout>
-
         <Grid container spacing={0}>
           <Grid item xs={12} lg={12}>
-            <ProductPerfomance />
+            <DonerList />
           </Grid>
         </Grid>
       </DashboardLayout>
@@ -20,4 +18,4 @@ const Tables = () => {
   );
 };
 
-export default Tables;
+export default Doners;
