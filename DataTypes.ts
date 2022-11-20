@@ -5,7 +5,7 @@ export type DonerType = {
   blood: string;
   phone: string;
   joined: string;
-  city: string;
+  district: string;
   is_available: boolean;
   is_admin: boolean;
   last_donate:string,

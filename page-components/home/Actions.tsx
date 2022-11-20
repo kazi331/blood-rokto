@@ -11,7 +11,7 @@ import icon2 from '../utils/blood2.svg'
 
 const Actions = () => {
   return (
-    <section className={`py-20 md:pt-40 lg:pt-40 bg-orange-50/50 `}>
+    <section className={`py-20 md:pt-20 lg:pt-20 bg-orange-50/50 `}>
       <div className="flex flex-wrap gap-4 items-center justify-center px-2">
         {/* card 1  */}
         <div className='bg-white shadow rounded'>
