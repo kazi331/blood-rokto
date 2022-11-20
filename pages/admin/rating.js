@@ -1,6 +1,6 @@
 import { Box, CssBaseline, Grid, Rating, ThemeProvider, Typography } from "@mui/material";
 import React from "react";
-import { Star } from "react-feather";
+import FeatherIcon from 'feather-icons-react'
 import BaseCard from "../../page-components/dashboard/BaseCard";
 import DashboardLayout from "../../page-components/dashboard/layouts/DashboardLayout";
 import theme from "../../page-components/dashboard/src/theme/theme";
@@ -63,7 +63,7 @@ const Ratings = () => {
                   setHover(newHover);
                 }}
                 emptyIcon={
-                  <Star
+                  <FeatherIcon icon="star"
                     style={{ opacity: 0.55 }}
                     fontSize="inherit"
                   />
