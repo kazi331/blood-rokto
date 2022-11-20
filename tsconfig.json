@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "test.js", "page-components/dashboard/DonerList.js"  ],
+, "test.js", "page-components/dashboard/DonerList.js", "page-components/home/Consult.jsx", "page-components/NavBar.jsx"  ],
   "exclude": [
     "node_modules"
   ]

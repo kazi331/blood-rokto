@@ -1,10 +1,9 @@
+import { Box, CssBaseline, Grid, Rating, ThemeProvider, Typography } from "@mui/material";
 import React from "react";
-import { Grid, Rating, Box, Typography, CssBaseline, ThemeProvider } from "@mui/material";
-
-import FeatherIcon from "feather-icons-react";
+import { Star } from "react-feather";
+import BaseCard from "../../page-components/dashboard/BaseCard";
 import DashboardLayout from "../../page-components/dashboard/layouts/DashboardLayout";
 import theme from "../../page-components/dashboard/src/theme/theme";
-import BaseCard from "../../page-components/dashboard/BaseCard";
 
 const labels = {
   0.5: "Useless",
@@ -64,8 +63,7 @@ const Ratings = () => {
                   setHover(newHover);
                 }}
                 emptyIcon={
-                  <FeatherIcon
-                    icon="star"
+                  <Star
                     style={{ opacity: 0.55 }}
                     fontSize="inherit"
                   />

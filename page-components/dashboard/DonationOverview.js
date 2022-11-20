@@ -1,9 +1,10 @@
 import dynamic from "next/dynamic";
 import BaseCard from "./BaseCard";
+
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const SalesOverview = () => {
-  const optionssalesoverview = {
+const DonationOverview = () => {
+  const donationOverview = {
     grid: {
       show: true,
       borderColor: "transparent",
@@ -23,7 +24,7 @@ const SalesOverview = () => {
       },
     },
 
-    colors: ["#fb9678", "#03c9d7"],
+    colors: ["#111827", "#EA062B"],
     fill: {
       type: "solid",
       opacity: 1,
@@ -50,20 +51,7 @@ const SalesOverview = () => {
     },
     xaxis: {
       type: "category",
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "July",
-        "Aug",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec",],
       labels: {
         style: {
           cssClass: "grey--text lighten-2--text fill-color",
@@ -72,8 +60,8 @@ const SalesOverview = () => {
     },
     yaxis: {
       show: true,
-      min: 100,
-      max: 400,
+      min: 10,
+      max: 70,
       tickAmount: 3,
       labels: {
         style: {
@@ -91,21 +79,21 @@ const SalesOverview = () => {
       theme: "dark",
     },
   };
-  const seriessalesoverview = [
+  const donationSeriesoverview = [
     {
-      name: "Ample Admin",
-      data: [355, 390, 300, 350, 390, 180, 355, 390, 300, 350, 390, 180],
+      name: "Registered",
+      data: [23, 24, 33, 45, 34, 23, 34, 21, 20, 23, 26, 34],
     },
     {
-      name: "Pixel Admin",
-      data: [280, 250, 325, 215, 250, 310, 280, 250, 325, 215, 250, 310],
+      name: "Total Donation",
+      data: [28, 25, 32, 55, 25, 31, 28, 35, 32, 21, 25, 42],
     },
   ];
   return (
-    <BaseCard title="Sales Overview">
+    <BaseCard title="Registration VS Donation">
       <Chart
-        options={optionssalesoverview}
-        series={seriessalesoverview}
+        options={donationOverview}
+        series={donationSeriesoverview}
         type="bar"
         height="295px"
       />
@@ -113,4 +101,4 @@ const SalesOverview = () => {
   );
 };
 
-export default SalesOverview;
+export default DonationOverview;

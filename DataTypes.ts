@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 export type DonerType = {
   id: number;
   first_name: string; last_name: string;
+  blood: string;
   phone: string;
   joined: string;
   city: string;

@@ -1,8 +1,8 @@
 import React from "react";
-import FeatherIcon from "feather-icons-react";
 import Image from "next/image";
 import userimg from "../../../../assets/images/users/user2.jpg";
 import { Box, Menu, Typography, Link, ListItemButton, List, ListItemText, Button, Divider, } from "@mui/material";
+import FeatherIcon from 'feather-icons-react'
 const ProfileDD = () => {
   const [anchorEl4, setAnchorEl4] = React.useState(null);
 
@@ -54,7 +54,7 @@ const ProfileDD = () => {
             >
               Shishir,
             </Typography>
-            <FeatherIcon icon="chevron-down" width="20" height="20" />
+          <FeatherIcon icon="chevron-down" />
           </Box>
         </Box>
       </Button>

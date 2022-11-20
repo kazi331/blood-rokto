@@ -35,15 +35,15 @@ export const months: { value: string, name: string }[] = [
 
 export const doners: DonerType[] = [
   {
-    id: 1, first_name: 'Sayem', last_name: 'Khan', phone: '01612178331', is_available: true,
-    city: 'cumilla', avatar: 'no image', joined: 'dec 2, 2022', is_admin: false, last_donate: 'oct 2, 2022',
+    id: 1, first_name: 'Sayem', last_name: 'Khan', blood: 'A+', phone: '01612178331', is_available: true,
+    city: 'cumilla', avatar: avatar.src, joined: 'dec 2, 2022', is_admin: false, last_donate: 'oct 2, 2022',
   },
   {
-    id: 2, first_name: 'Sayem', last_name: 'Khan', phone: '01612178331', is_available: false,
+    id: 2, first_name: 'Sayem', last_name: 'Khan', blood: 'A+', phone: '01612178331', is_available: false,
     city: 'cumilla', avatar: avatar.src, joined: 'dec 2, 2022', is_admin: true, last_donate: 'oct 2, 2022',
   },
   {
-    id: 3, first_name: 'Sayem', last_name: 'Khan', phone: '01612178331', is_available: false,
+    id: 3, first_name: 'Sayem', last_name: 'Khan', blood: 'A+', phone: '01612178331', is_available: false,
     city: 'cumilla', avatar: avatar.src, joined: 'dec 2, 2022', is_admin: false, last_donate: 'oct 2, 2022',
   },
 ]

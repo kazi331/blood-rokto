@@ -44,7 +44,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
                   <ListItemIcon>
                     <FeatherIcon
                       style={{ color: `${location === item.href ? "white" : ""} `, }}
-                      icon={item.icon} width="20" height="20"
+                      icon={item.icon} className="w-6 h-6"
                     />
                   </ListItemIcon>
 

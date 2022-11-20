@@ -11,7 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@heroicons/react": "^2.0.13",
+    "@mui/icons-material": "^5.10.14",
     "@mui/lab": "^5.0.0-alpha.108",
     "@mui/material": "^5.10.14",
     "@next/font": "^13.0.3",
@@ -25,7 +25,7 @@
     "clsx": "1.1.1",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",
-    "feather-icons-react": "^0.5.0",
+    "feather-icons-react": "^0.6.2",
     "formik": "^2.2.9",
     "moment": "^2.29.4",
     "mui-tel-input": "^2.0.4",
